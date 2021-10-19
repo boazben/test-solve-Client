@@ -1,0 +1,25 @@
+.titleForm{
+    margin:0;
+    font-size: 42px;
+    cursor: pointer;
+}
+  
+  
+  .titelInput {
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 42px;
+    outline: none;
+    border: none;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0);
+    font-weight: bold;
+  }
+
+  .titelInput:focus {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-weight: bold;
+  }

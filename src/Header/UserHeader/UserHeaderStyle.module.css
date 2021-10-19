@@ -1,0 +1,45 @@
+.userContainer{
+    display: flex;
+    align-items: center;
+}
+
+
+
+.logout {
+    margin-left: 8px;
+    text-decoration: none;
+    color: #E05A47;
+    cursor: pointer;
+    font-size: 25px;
+    
+}
+
+.HeaderImg {
+    height: 50px;
+    width: 50px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: red;;
+    border: 1px solid #B79F69;
+    background-position: center;
+    background-size: cover;
+}
+
+.userName {
+    margin: 10px;
+    width: max-content;
+    color: #B79F69;
+    font-family: 'Suez One', serif;
+    font-weight: bold;
+}
+
+/* .Link {
+    margin: 10px;
+    text-decoration: none;
+    color: rgb(160, 160, 160);
+}
+
+.Linkactive {
+    color: black;
+    -webkit-text-stroke: 0.5px black;
+} */

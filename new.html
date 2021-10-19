@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+
+        .container {
+            display: flex;
+        }
+        
+        .trainning{
+            flex: 4;
+            background-color: black;
+        }
+
+        .red {
+            flex: 4;
+            background-color: red
+        }
+
+        .blue {
+            flex: 4;
+            background-color: blue
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="trainning red">
+            <h1 id="forNow"></h1>
+        </div>
+    
+        <div class="trainning">
+            <h1>black div</h1>
+        </div>
+
+        <div class="trainning blue">
+            <h1>BLUE</h1>
+            <button id="moreOne">Click Here!</button>
+        </div>
+
+        <input type="text" id="name"/>
+    </div>
+
+    <script>
+        document.getElementById("forNow").innerText = "blue div"
+        document.getElementById("moreOne").addEventListener("click", forDo)
+        
+        function forDo() {
+            var myName =  document.getElementById("name").value
+            alert(`Hello!` + myName)
+        }
+    </script>
+    
+</body>
+</html>

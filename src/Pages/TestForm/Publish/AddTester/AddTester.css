@@ -1,0 +1,32 @@
+.addTesterContainer {
+   width: 300px;
+    border-bottom: 1px solid rgb(0, 0, 0); 
+    margin: auto;
+    display: flex;
+}
+
+.addTesterInput{
+    width: 100%;
+    border: none;
+    text-align: end;
+    font-size: 18px;
+}
+
+.addTesterInput:focus {
+    outline: none;
+    /* transition:  ease-out 0.5s; */
+}
+
+.addTesterSubmit {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    color: rgb(91, 91, 233);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.addTesterSubmit:hover {
+    color: rgb(72, 72, 165);
+
+}

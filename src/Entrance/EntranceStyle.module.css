@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+}
+
+.Login {
+    margin-top: 20px;
+    padding-top: 20px;
+    width: 400px;
+    background-color: hsl(0deg 0% 0% / 60%);
+    border-radius: 20px;
+    top: calc(50% - 200px);
+    right: calc(50% - 200px);
+
+    display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+}
+
+    .Login input {
+        margin: 20px;
+    }
+
+.gif{
+    background-image: url(./computerChield.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 409px;
+    width: 540px;
+
+}
+
+  

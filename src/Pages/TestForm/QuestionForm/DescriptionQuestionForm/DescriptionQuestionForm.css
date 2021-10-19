@@ -1,0 +1,33 @@
+.descriptionQuestionContainer{
+  width: 100%;
+  text-align: start;
+}
+
+.descriptionQuestionForm{
+    margin:0;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+  
+  
+  .descriptionQuestionInput {
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    text-align: start;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .descriptionQuestionInput:focus {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .empty {
+    color: rgb(197, 197, 197);
+  }

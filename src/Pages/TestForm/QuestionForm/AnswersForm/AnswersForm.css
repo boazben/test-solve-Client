@@ -1,0 +1,12 @@
+.AnswersFormContainer {
+    
+}
+
+.OneAnsCont {
+    display: flex;
+}
+
+.AlphCounter {
+    text-align: start;
+    width: 20px;
+}

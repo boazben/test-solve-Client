@@ -1,0 +1,15 @@
+.butContainer {
+    cursor: pointer;
+    background-color: white;
+    color: #7F5A7B;;
+    border: 3px solid #7F5A7B;;
+    border-radius: 20px;
+    height: 30px;
+    width: 50px;
+    font-size: 16px;
+}
+
+.butContainer:hover {
+    background-color: #7F5A7B; 
+    color: white;
+}

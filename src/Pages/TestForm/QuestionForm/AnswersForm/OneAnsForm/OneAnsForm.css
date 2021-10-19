@@ -1,0 +1,60 @@
+.AnsContainer {
+    display: flex;
+    align-items: center;
+
+}
+
+
+  .onwAnswerForm {
+      margin:0;
+      font-size: 16px;
+      cursor: pointer;
+      width: 500px;
+      display: flex;
+  }
+    
+    
+    .onwAnswerInput { 
+      padding: 0;
+      height: 100%;
+      width: 500px;
+      font-family: 'Rubik', sans-serif;
+      font-size: 16px;
+      outline: none;
+      border: none;
+      text-align: start;
+      background-color: rgba(0, 0, 0, 0);
+      font-weight: none;
+    }
+  
+    .onwAnswerInput:focus {
+      padding: 0;
+      height: 100%;
+      width: 500px;
+      outline: none;
+      border:  none;
+      background-color: rgba(0, 0, 0, 0);
+      font-weight: none;
+    }
+
+    .empty {
+      color: rgb(197, 197, 197);
+    }
+
+  .DeldeteOneAnsForm {
+    font-size: 10px;
+    padding: 1px;
+    border: 2px solid #2C253A;
+    color: #2C253A;
+    border-radius: 50%;
+    display: flex;
+      align-items: center;
+      justify-content: center;
+
+    cursor: pointer;
+  }
+
+  .DeldeteOneAnsForm:hover {
+    background-color: #2C253A;
+    color: white;
+  }

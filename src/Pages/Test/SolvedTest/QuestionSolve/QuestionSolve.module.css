@@ -1,0 +1,55 @@
+.container{
+    display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    padding-right: 15px ;
+    margin: 10px 0 10px 0;
+}
+
+.headline {
+    margin: 0;
+}
+
+.headline span {
+    margin-left: 5px;
+}
+
+.description {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.answerContainer{
+    display:flex ;
+    align-items: center;
+}
+
+.section{
+    margin-left: 4px;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.img {
+    width: 15px;
+    height: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 15px;
+}
+
+.correct {
+    background-image: url(./correct.png);
+}
+
+.discorrect {
+    background-image: url(./discorrect.png);
+}

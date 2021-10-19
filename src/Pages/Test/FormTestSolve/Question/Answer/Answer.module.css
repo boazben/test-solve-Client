@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+}
+
+.label{
+    display: flex;
+}
+
+.text{
+    margin-right: 4px;
+}

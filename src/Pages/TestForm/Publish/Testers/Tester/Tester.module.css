@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.137);
+    padding: 5px 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container:hover {
+    background-color: rgba(0, 0, 0, 0.185);
+}
+
+.ProfilersContainer {
+    display: flex;
+    align-items: center;
+}
+
+.TesterImg {
+
+height: 35px;
+width: 35px;
+flex-shrink: 0;
+border-radius: 50%;
+background-color: white;
+border: 3px solid rgb(148, 148, 148);
+background-position: center;
+background-size: cover;
+
+}
+
+.ProfilersContainer span {
+    margin-right: 35px;
+}

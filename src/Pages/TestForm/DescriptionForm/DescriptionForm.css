@@ -1,0 +1,28 @@
+.descriptionContainer {
+  width: 100%;
+}
+
+.descriptionForm{
+    margin:0;
+    font-size: 32px;
+    cursor: pointer;
+    width: 100%;
+}
+  
+  
+  .descriptionInput{
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 32px;
+    outline: none;
+    border: none;
+    text-align: center;
+    background-color: rgba(204, 94, 94, 0);
+  }
+
+  .descriptionInput:focus {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+  }

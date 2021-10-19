@@ -1,0 +1,77 @@
+.container{
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+    height: 100px;
+    padding: 5px;
+    color: #262B2E;
+}
+
+.menu {
+    font-size: 40px;
+    font-weight: 500;
+    transition: 100ms;
+    cursor: pointer;
+}
+
+
+.menuOpen {
+    width: 100vw;
+    height: 100vh;
+    position:fixed;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    background-color: #F3F2DC;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #262B2E;
+}
+
+.logo {
+    font-size: 60px;
+}
+
+
+.logoTextContainer {
+    margin-left: 5px;
+}
+
+.name {
+    font-weight: 1000;
+}
+
+
+.LinksContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.Link{
+    color: #262B2E;
+    text-decoration: none;
+    font-size: 32px;
+    margin: 15px 0 10px 0;
+}
+
+.logoContainerOpen {
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.logoOpen{
+    font-size: 100px;
+}
+
+.nameOpen{
+    font-size: 38px;
+}
+
+.descriptionOpen{
+    font-size: 28px;
+}

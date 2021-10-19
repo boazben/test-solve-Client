@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Heebo', sans-serif; */
+    font-family: 'Alef', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #F3F2DC;
+}
+
+
+
+
+/* font-family: 'Amatic SC', cursive;
+font-family: 'Arimo', sans-serif;
+font-family: 'Heebo', sans-serif;
+font-family: 'Suez One', serif; */

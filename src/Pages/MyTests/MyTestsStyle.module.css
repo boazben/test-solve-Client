@@ -1,0 +1,10 @@
+.TestsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.Link{
+    color: black;
+    text-decoration: none;
+}

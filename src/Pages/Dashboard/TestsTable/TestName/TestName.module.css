@@ -1,0 +1,23 @@
+.nameForm{
+    margin:0;
+    cursor: pointer;
+}
+
+
+  
+  .nameInput {
+    width: min-content;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    
+  }
+
+  .nameInput:focus {
+    width: min-content;
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+  }

@@ -1,0 +1,13 @@
+.container{
+    border: 1px solid rgba(0, 0, 0, 0.329);
+    width: 80%;
+    height: 40%;
+    margin: auto;
+    margin-top:20px;
+    overflow: auto;
+}
+
+.massage {
+    margin-top: 70px;
+    
+}

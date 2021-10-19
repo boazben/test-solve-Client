@@ -1,0 +1,21 @@
+.container{
+    padding: 10px;
+    margin: 10px 10px 0 0;
+}
+
+.title {
+    text-align: right;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.description {
+    margin-top: 4px;
+    text-align: right;
+    
+}
+
+.ans {
+    text-decoration: underline;
+    display: block;
+}
