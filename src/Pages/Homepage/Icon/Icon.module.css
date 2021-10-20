@@ -1,44 +1,19 @@
-.description {
-    width: 100vw;
-    height: 100vw;
-    max-height: 400px;
-    background-color: #262B2E ;
+.container {
     display: flex;
-        align-items: center;
-        justify-content: center;
-}
-
-.content {
-   
-    height: max-content;
-    width: max-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    font-size: 60px;
+    color: #025D66;
+    width: 150px;
+    margin: 5px 0;
 }
 
-.titel {
-    margin: 10px;
-    font-size: 42px;
-    color: #C9842A;
-}
-
-.subtitle {
-    margin: 10px;
-    font-size: 28px;
-    color: #F3F2DC;
-}
-
-.button {
-    margin: 10px;
-    font-family: 'Heebo', sans-serif;
-    font-size: 20px;
-    font-weight: bold;
+.description {
     color: #262B2E;
-    background-color: #C9842A;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
+    font-size: 20px;
 }
 
+@media  screen and (min-width: 680px){
+    .container {
+        margin: 2.3vw;
+    }
+}

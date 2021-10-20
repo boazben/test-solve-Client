@@ -12,7 +12,7 @@ export default function Guest() {
            <Header />
            <Switch>
             <Route path="/" component={Homepage} exact />
-            <Route path="/login" component={Entrance} exact />
+            <Route path="/register" component={Entrance} exact />
             <Route path="/my-created" component={Entrance} />
             <Route path="/test-form/:testId" component={Entrance} />
             <Route path="/my-tests" component={Entrance} />

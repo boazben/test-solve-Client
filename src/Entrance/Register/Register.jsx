@@ -48,7 +48,7 @@ export default function Register({toConnect}) {
     {secssesRegister ? 
     <div className="Login">
         <h2>ההרשמה הצליחה!</h2>
-        <button onClick={() => setRegisterState(false)}>התחבר עכשיו</button> 
+        <button onClick={() => setRegisterState(true)}>התחבר עכשיו</button> 
     </div> 
     :
     <form id="register" className="Login" onSubmit={(e) => register(e)}>

@@ -12,7 +12,7 @@ export const UserContext = createContext()
 
 export default function Entrance({ children }) {
     const [user, setUser] = useState('gust')
-    const [registerState, setRegisterState] = useState(false)
+    const [registerState, setRegisterState] = useState(true)
     const [login, setLogin] = useContext(LoginState)
 
     useEffect(() => {

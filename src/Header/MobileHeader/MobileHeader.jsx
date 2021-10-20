@@ -16,6 +16,7 @@ export default function MobileHeader() {
                     <Link className={Style.Link} onClick={() => setMenu(false)} to="/my-tests" >המבחנים שלי</Link>
                     <Link className={Style.Link} onClick={() => setMenu(false)} to='/website-information' >על הפרוייקט</Link>
                     <Link className={Style.Link} onClick={() => setMenu(false)}  to='/about' >מי אנחנו?</Link>
+                    <Link className={Style.Link} onClick={() => setMenu(false)}  to='/register' >הרשמה</Link>
                 </div>
 
                     <div className={`${Style.logoContainer} ${Style.logoContainerOpen}`}>

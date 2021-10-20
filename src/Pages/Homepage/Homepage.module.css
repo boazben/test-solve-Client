@@ -6,7 +6,6 @@
 /*-------------- The No. 1 -----------------*/
 
 .firstDiv {
-    width: 100vw;
     display: flex;
         flex-direction: column;
     
@@ -74,19 +73,34 @@
 
 /*-------------- The No. 2-----------------*/
 
+.secondDiv {
+    display: flex;
+        align-items: center;
+    height: 140vw;
+    max-height: 500px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
 
 .description2 {
+   
+    display: flex;
+        flex-direction: column;
     background-color: #F3F2DC;
+    
 }
 
 .title2 {
     color: #262B2E;
+    margin: 0;
 }
 
 .subtitle2 {
+    margin-top: 0;
     color: #262B2E;
     font-size: 20px;
     font-weight: normal; 
+    max-width: 400px;
 }
 
 .button2 {
@@ -94,10 +108,93 @@
     color:#F3F2DC;
 }
 
+.iconsLine {
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+    max-width: 400px;
+    margin-top: 20px;
+
+}
+@media  screen and (min-width: 680px) {
+    .iconsLine {
+        flex-direction: row;
+        max-width: 80vw;
+        margin-top: 0;
+    }
+}
 
 
+.iconsGroup {
+    display: flex;
+        justify-content: space-between;
+    margin: 5px 0;
+}
 
 
+.thirdDiv {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: 50vw 50vw;
+    grid-template-areas:
+        "top-right top-left"
+        "bottom-right bottom-left";
+    align-items: start;
+}
+
+.topLeft {
+    grid-area: top-left;
+    background-image: url('https://cdn.pixabay.com/photo/2018/10/02/11/12/girl-3718521_1280.jpg');
+    width: 100%;
+    height: 100%;
+}
+
+.topRight {
+    grid-area: top-right;
+    background-color: #262B2E;
+    width: 100%;
+    height: 100%;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+    
+}
+
+.bottomLeft {
+    grid-area: bottom-left;
+    background-color: #262B2E;
+    width: 100%;
+    height: 100%;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+}
+
+.bottomRight {
+    grid-area: bottom-right;
+    background-image: url('https://cdn.pixabay.com/photo/2018/06/27/07/45/student-3500990_1280.jpg');
+    width: 100%;
+    height: 100%;
+}
+
+.content3 {
+    width: 100%;
+}
+
+.title3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.subtitle3{
+    font-size: 18px;
+    /* margin: 5px; */
+}
+
+.button3 {
+    font-size: 18px;
+    padding: 5px;
+}
 
 @media  screen and (min-width: 769px) {
     .firstDiv {
@@ -125,6 +222,45 @@
     .img1 {
         display: none;
     }
+
+
+    .secondDiv{
+        max-height: 390px;
+        margin: 0;
+    }
+
+    .subtitle2 {
+        max-width: 600px;
+    }
+
+
+    .thirdDiv {
+        margin: auto;
+        grid-template-columns: repeat(2, 45%);
+        grid-template-rows: 40vw 40vw;
+        justify-content: center;
+    }
+
+    .content3 {
+        width: 80%;
+    }
+
+    .title3 {
+        font-size: 4vw;
+      
+    }
+    
+    .subtitle3{
+        font-size: 2.5vw;
+      
+    }
+    
+    .button3 {
+        font-size: 3vw;
+        padding: .7vw;
+    }
+    
+   
 
   }
 
