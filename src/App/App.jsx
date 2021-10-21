@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Entrance, { UserContext } from '../Entrance/Entrance'
 import { serverReq } from '../functions'
@@ -14,9 +14,20 @@ import TestForm from '../Pages/TestForm/TestForm'
 import './app.css'
 
 export const LoginState = createContext()
+export const WidthScreen = createContext()
 
 function App() {
   const [login, setLogin] = useState(false)
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useLayoutEffect(() => {
+    function updateWith() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener('resize', updateWith);
+    updateWith();
+    return () => window.removeEventListener('resize', updateWith);
+}, []);
   
   useEffect(() => {
     async function loginWithToken() {
@@ -41,6 +52,7 @@ function App() {
 
   return (
     <div className='App'>
+      <WidthScreen.Provider value={[width, setWidth]} >
       <LoginState.Provider value={[login, setLogin]}>
       {
         login ? 
@@ -65,6 +77,7 @@ function App() {
       </div>
       }
     </ LoginState.Provider>
+    </ WidthScreen.Provider>
     </div>
   )
 }

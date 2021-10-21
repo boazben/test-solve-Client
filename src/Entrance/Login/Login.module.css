@@ -1,145 +1,56 @@
-.LoginContainer{
-    position: absolute;
-    top: 100px;
-    right:60px
-}
-
-.inputsContainer {
+.LoginContainer {
     display: flex;
-    flex-direction: column;
-    /* position: absolute;
-    top: 100px;
-    right: 60px; */
-}
-
-.StayConnected{
-    display: flex;
-        text-align: center;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
 }
 
-
-.checkbox {
-    -webkit-appearance:none;
-    display:inline-block;
-    width:16px;
-    height:16px;
-    padding:0px;
-    margin:5px;
-    margin-right:5px;
-    background:#FFE397;
-    border-radius:20px;
-    border:3px solid #A2806B;
-    border: 3px solid #A2806B;                                                
-    box-sizing:content-box;                                                   
-    line-height:16px;                                                         
-    vertical-align: sub;                                                      
-    position:relative;
-}                                                                             
-.checkbox:checked {                                     
-    border:3px solid  #A2806B;                                                
-}                                                                             
-.checkbox:checked:after{                                
-  content:'';                                                                 
-  position: absolute;                                                         
-  width: 12px;                                                                
-  height: 12px;                                                               
-  border-radius: 12px;                                                         
-  background: #A2806B;                                                        
-  top:50%;                                                                    
-  transform: translateY(-50%);                                                
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  font-weight: bold;
+.form {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
 }
 
-.checkboxLabel{
-    color: #A2806B;
-    font-weight: bold;
+.icon {
+    font-size: 80px;
+    color: #657179;
+    margin-bottom: 20px;
 }
-
-
-.input {
-    margin: 20px;
-    border: none;
-    height: 44px;
-    width: 338px;
-    border-radius: 30px;
-    background-color:#FFE397;
-    font-family: 'Amatic SC', cursive;
-    color: #A2806B;
-    font-size: 32px;
-    font-weight: bold;
-    padding: 5px 20px;
-}
-
-.input:focus {
-    outline: none;
-}
-
-.input::placeholder{
-    color: #A2806B;
-    font-size: 32px;
-}
-
-
-.input:-webkit-autofill,
-.input:-webkit-autofill:hover, 
-.input:-webkit-autofill:focus, 
-.input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 32px #FFE397 inset !important;
-    -webkit-text-fill-color: #A2806B !important;
-    font-size: 32px !important;
-}
-
-.input:-webkit-autofill::first-line {
-    font-family: 'Amatic SC', cursive;
-    font-size: 32px;
-    font-weight: bold;
-}
-
-
-.StayConnected {
-    font-family: 'Heebo', sans-serif;
-    font-size: 22px;
-}
-
-
 
 .btn {
-    padding: 10px 20px 10px 20px;
-    cursor: pointer;
-    background-color: #FE9176;
-    color: white;;
-    border: 3px solid #FE9176;;
-    border-radius: 30px;
-    height: min-content;
-    width: max-content;
-    font-size: 26px;
-    font-family: 'Arimo', sans-serif;
-    margin-top: 30px;
-   
-
-    
-    
-}
-
-.btn:hover {
-    box-shadow: 0px -4px 1px 2px rgb(0 0 0 / 35%);
+    font-family: 'Alef', sans-serif;
+    font-size: 30px;
+    border: none;
+    background-color: #025D66;
+    color: #F3F2DC;
     font-weight: bold;
-}
-
-.register {
-    font-family: 'Suez One', serif;
-    font-size: 32px;
-    margin-top: 30px;
-}
-
-.register>span {
-    color: #E05A47;
+    border-radius: 10px;
+    padding: 5px 45px;
     cursor: pointer;
+    margin: 20px;
+}
+
+.error {
+    color: #E57462;
+    font-size: 22px;
+    margin: 10px;
+}
+
+.ask{
+    color: #262B2E;
+    margin: 20px;
+    font-size:22px;
+}
+
+.toConnect {
+    color: #E57462;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.headline {
+    color: #262B2E;
+    font-size: 30px;
+    margin: 0;
+    margin-top: 10px;
 }
 

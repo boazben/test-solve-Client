@@ -7,6 +7,7 @@ import Loding from '../Components/Loding/Loding'
 import { serverReq } from '../functions'
 import { useContext } from 'react/cjs/react.development'
 import { LoginState } from '../App/App'
+import { useHistory } from 'react-router'
 
 export const UserContext = createContext()
 
@@ -14,6 +15,7 @@ export default function Entrance({ children }) {
     const [user, setUser] = useState('gust')
     const [registerState, setRegisterState] = useState(true)
     const [login, setLogin] = useContext(LoginState)
+    const history = useHistory()
 
     useEffect(() => {
         async function loginWithToken() {
@@ -23,6 +25,8 @@ export default function Entrance({ children }) {
                     // console.log(`In Entrance page, responce: ${response}`)
                     setUser(response)
                     setLogin(true)
+                    history.push('/')
+
                     
                 }
                 else{
@@ -50,7 +54,6 @@ export default function Entrance({ children }) {
                     <div className={Style.form}>
                     {registerState ? <Register toConnect={[registerState, setRegisterState]} /> : <Login toRegister={[registerState, setRegisterState]}/>}
                     </div>
-                    <div className={Style.gif}></div>
                 </div>
             }   
         </UserContext.Provider>

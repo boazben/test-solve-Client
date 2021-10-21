@@ -196,7 +196,7 @@
     padding: 5px;
 }
 
-@media  screen and (min-width: 769px) {
+@media  screen and (min-width: 768px) {
     .firstDiv {
         background-image: url('https://cdn.pixabay.com/photo/2021/02/18/12/00/girl-6027005_1280.jpg');
         background-position: contain;

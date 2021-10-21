@@ -3,6 +3,8 @@ import {Link, useHistory } from 'react-router-dom'
 import { LoginState } from '../../App/App'
 import { serverReq } from '../../functions'
 import { UserContext } from '../Entrance'
+import Checkbox from '../Input/Checkbox/Checkbox'
+import Input from '../Input/Input'
 import Style from './Login.module.css'
 
 
@@ -12,6 +14,7 @@ export default function Login({toRegister}) {
     const [error, setError] = useState('')
     const [login, setLogin] = useContext(LoginState)
     const [registerState, setRegisterState] = toRegister
+    const history = useHistory()
 
 
     async function toLogin(e) {
@@ -30,6 +33,7 @@ export default function Login({toRegister}) {
             if (values.stayConnected) localStorage.token = res.token
             setUser(res)
             setLogin(true)
+            history.push('/')
             
         } catch (error) {
             setError(error.response?.data?.error || error.message)
@@ -38,22 +42,29 @@ export default function Login({toRegister}) {
     }
     return (
         <div className={Style.LoginContainer}>
-            <form id="login"  onSubmit={(e) => toLogin(e)} >
+
+            <h2 className={Style.headline}>התחברות</h2>
+
+
+            <h3 className={Style.ask}>כבר יש לך חשבון? <span onClick={() => setRegisterState(true)} className={Style.toConnect}>התחברות</span></h3>
+
+            <i className={`fas fa-user-lock ${Style.icon}`}></i>
+            
+           
+            <form className={Style.form} id="login"  onSubmit={(e) => toLogin(e)} >
+                
+                <Input id="email" type="email" icon="fas fa-envelope" placeholder="אימייל" connect={true} />        
+                <Input id="password" type="password" icon="fas fa-lock" placeholder="סיסמא" connect={true} />
+                
+                
+
+                <Checkbox id="stayConnected" text="השאר אותי מחובר"  defaultChecked={true}/>
+
+
                 <div>{error}</div>
-                <div className={Style.inputsContainer}>
-                    <input  className={Style.input} id="email" type="text" name="email" placeholder="אימייל" required minLength="8" maxLength="40"/>
-                    <input className={Style.input} id="password" type="password" name="password" placeholder="סיסמא" required />
-                </div>
+                <input className={`${Style.btn} ${Style.submit}`} type="submit" value="התחברות" />
 
-
-                <div className={Style.StayConnected}>
-                    <input className={Style.checkbox} id="stayConnected" type="checkbox" name="stayConnected" />
-                    <label className={Style.checkboxLabel} htmlFor="stayConnected">השאר אותי באתר</label>
-                </div>
-
-                <input className={Style.btn} type="submit" value="כניסה" />
             </form>
-            <div className={Style.register}>לא רשומים? <span onClick={() => setRegisterState(true)}>הצטרפו אלינו!</span> </div>
         </div>
     )
 }

@@ -4,6 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { LoginState } from '../../App/App';
 import { serverReq } from '../../functions';
 import { UserContext } from '../Entrance';
+import Checkbox from '../Input/Checkbox/Checkbox';
+import Input from '../Input/Input';
+import Style from './Register.module.css'
+import { GoogleLogin } from 'react-google-login'
 
 export default function Register({toConnect}) {
     const [user, setUser] = useContext(UserContext)
@@ -27,12 +31,14 @@ export default function Register({toConnect}) {
                 first: values.firstName,
                 last: values.lastName
             }
+            console.log( values);
             const res = await serverReq('put', '/register', {"name": name, "email": values.email, "password": values.password})
             if (values.conntectNow) {
                 sessionStorage.token = res.token
                 if (values.stayConnected) localStorage.token = res.token
                 setUser(res)
                 setLogin(true)
+                history.push('/')
             } 
             else setSecssesRegister(true)
             
@@ -48,42 +54,33 @@ export default function Register({toConnect}) {
     {secssesRegister ? 
     <div className="Login">
         <h2>ההרשמה הצליחה!</h2>
-        <button onClick={() => setRegisterState(true)}>התחבר עכשיו</button> 
+        <button className={`${Style.btn} ${Style.toConnectNow}`} onClick={() => setRegisterState(false)}>היכנסו עכשיו</button> 
     </div> 
     :
-    <form id="register" className="Login" onSubmit={(e) => register(e)}>
-        <div>{error}</div>
+    <form id="register" className={Style.formContainer} onSubmit={(e) => register(e)}>
 
-        <label htmlFor="firstName">שם פרטי</label>
-        <input id="firstName" type="text" name="firstName" placeholder="שם פרטי" required minLength="2" maxLength="12"/>
+        <h2 className={Style.headline}>הרשמה</h2>
 
-        <label htmlFor="lastName">שם משפחה</label>
-        <input id="lastName" type="text" name="lastName" placeholder="שם משפחה" required minLength="2" maxLength="12"/>
+        <h3 className={Style.ask}>כבר יש לך חשבון? <span onClick={() => setRegisterState(false)} className={Style.toConnect}>התחברות</span></h3>
 
-        <label htmlFor="email">אימייל</label>
-        <input id="email" type="email" name="email" placeholder="אימייל" required/>
+        <Input id="firstName"  type="text" icon="fas fa-user" placeholder="שם פרטי" />        
+        <Input id="lastName" type="text" icon="fas fa-users" placeholder="שם משפחה" />        
+        <Input id="email" type="email" icon="fas fa-envelope" placeholder="אימייל" />        
+        <Input id="password" type="password" icon="fas fa-lock" placeholder="סיסמא" />        
+        <Input id="verifyPassword" type="password" icon="fas fa-key" placeholder="ווידוא סיסמא" />
+        <Checkbox id="conntectNow" text="חבר אותי עכשיו" defaultChecked={true}/>        
+        <Checkbox id="stayConnected" text="השאר אותי מחובר"  defaultChecked={false}/>
 
-        <label htmlFor="password">סיסמא</label>
-        <input id="password" type="password" name="password" placeholder="סיסמא" required minLength="8" maxLength="40"/>
-        
-        <label htmlFor="verifyPassword">ווידוא סיסמא</label>
-        <input id="verifyPassword" type="password" name="verifyPassword" placeholder="וידוא סיסמא" required minLength="8" maxLength="40"/>
+        <div className={Style.error}>{error}</div>
 
-        <div>
-            <input id="conntectNow" type="checkbox" name="conntectNow" defaultChecked={true}/>
-            <label htmlFor="conntectNow">חבר אותי עכשיו</label>
-        </div>
+        <input className={`${Style.btn} ${Style.submit}`} type="submit" value="הרשמה" />
 
-        <div>
-            <input id="stayConnected" type="checkbox" name="stayConnected"/>
-            <label htmlFor="stayConnected">השאר אותי מחובר</label>
-        </div>
+       
 
 
-        <input type="submit" value="הירשם" />
     </form>
-
     }
+
     </>
     )
 }

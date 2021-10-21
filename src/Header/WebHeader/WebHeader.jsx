@@ -25,7 +25,7 @@ export default function WebHeader() {
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to="/my-tests" >המבחנים שלי</NavLink>
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/website-information' >על הפרויקט</NavLink>
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/about' >מי אנחנו?</NavLink>
-                <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/register' >הרשמה</NavLink>
+                <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/register' >כניסה</NavLink>
             </nav>
             
         </header>

@@ -1,0 +1,108 @@
+.formContainer {
+    display: grid;
+        justify-items: center;
+        align-items: center;
+        width: 100vw;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: min-content;
+    row-gap: 10px;
+    /* grid-template-rows: repeat(9, 1fr); */
+    grid-template-areas:
+      "ask ask"
+      "firstName firstName"
+      "lastName lastName"
+      "email email"
+      "password password"
+      "verifyPassword verifyPassword"
+      "conntectNow stayConnected"
+      "error  error"
+      "submit  submit"
+      "toConnect toConnect";
+}
+
+.btn {
+    font-family: 'Alef', sans-serif;
+    font-size: 30px;
+    border: none;
+    background-color: #025D66;
+    color: #F3F2DC;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px 45px;
+    width: 80%;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+
+    cursor: pointer;
+}
+
+.error {
+    grid-area: error;
+    color: #E57462;
+    font-size: 22px;
+}
+
+.submit {
+    grid-area: submit;
+
+}
+
+
+
+.ask{
+    color: #262B2E;
+    grid-area: ask;
+    font-size:22px;
+    margin: 0px;
+}
+
+.toConnect {
+    color: #E57462;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.headline {
+    display: none;
+}
+
+.toConnectNow {
+    margin: auto;
+    width: 280px;
+}
+
+
+@media screen and (min-width: 768px){
+
+    .formContainer {
+        grid-template-areas: 
+        "headline headline"
+        "ask ask"
+        "firstName lastName"
+        "email email"
+        "password password"
+        "verifyPassword verifyPassword"
+        "conntectNow stayConnected"
+        "error  error"
+        "submit  submit"
+        "toConnect toConnect";
+    }
+
+    .headline {
+        color: #262B2E;
+        display: inline;
+        grid-area: headline;
+        font-size: 36px;
+        margin: 0;
+    }
+
+    .btn {
+        width: 17%;
+    }
+
+    .toConnectNow {
+        width: 350px;
+    }
+    
+}
