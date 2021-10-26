@@ -5,10 +5,12 @@ import { LoginState } from '../../App/App'
 import UserHeader from '../UserHeader/UserHeader'
 import Style from './WebHeader.module.css'
 
-export default function WebHeader() {
+export default function WebHeader({logout}) {
     const [login] = useContext(LoginState)
     return (
         <header className={Style.header}>
+
+            <UserHeader />
             
             <Link className={`${Style.logoContainer}`} to="/">
                 <div className={`${Style.logoTextContainer}`}>
@@ -20,12 +22,19 @@ export default function WebHeader() {
                 </div>
             </Link>
 
+            {/* UserBar - Positin - absulut */}
+
             <nav className={Style.nav}>
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to="/my-created">יצירת מבחנים</NavLink>
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to="/my-tests" >המבחנים שלי</NavLink>
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/website-information' >על הפרויקט</NavLink>
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/about' >מי אנחנו?</NavLink>
-                <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/register' >כניסה</NavLink>
+                {
+                    login ?
+                    null
+                    :
+                    <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/register' >כניסה</NavLink>
+                }
             </nav>
             
         </header>

@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { LoginState } from '../../App/App'
+import UserHeader from '../UserHeader/UserHeader'
 import Style from './MobileHeader.module.css'
 
 export default function MobileHeader() {
     const [menu, setMenu] = useState(false)
+    const [login] = useContext(LoginState)
 
     return (
         <header className={Style.container}>
@@ -16,7 +19,12 @@ export default function MobileHeader() {
                     <Link className={Style.Link} onClick={() => setMenu(false)} to="/my-tests" >המבחנים שלי</Link>
                     <Link className={Style.Link} onClick={() => setMenu(false)} to='/website-information' >על הפרוייקט</Link>
                     <Link className={Style.Link} onClick={() => setMenu(false)}  to='/about' >מי אנחנו?</Link>
-                    <Link className={Style.Link} onClick={() => setMenu(false)}  to='/register' >כניסה</Link>
+                    {
+                        !login ?
+                        <Link className={Style.Link} onClick={() => setMenu(false)}  to='/register' >כניסה</Link>
+                        : null
+
+                    }
                 </div>
 
                     <div className={`${Style.logoContainer} ${Style.logoContainerOpen}`}>
@@ -32,6 +40,7 @@ export default function MobileHeader() {
                 :
                 <>
                 <div className={Style.menu} onClick={() => setMenu(true)}><i className="fas fa-bars"></i></div>
+                <UserHeader />
                 <Link className={Style.logoContainer} to="/">
                     <div className={Style.logoContainer}>
                         <div className={Style.logoTextContainer}>

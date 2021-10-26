@@ -1,11 +1,10 @@
 
-import React, { createContext, useEffect, useState } from 'react'
+import React, {useContext, createContext, useEffect, useState } from 'react'
 import Style from './EntranceStyle.module.css'
 import Login from './Login/Login'
 import Register from './Register/Register'
 import Loding from '../Components/Loding/Loding'
 import { serverReq } from '../functions'
-import { useContext } from 'react/cjs/react.development'
 import { LoginState } from '../App/App'
 import { useHistory } from 'react-router'
 
@@ -18,28 +17,27 @@ export default function Entrance({ children }) {
     const history = useHistory()
 
     useEffect(() => {
-        async function loginWithToken() {
-            try {
-                if (localStorage.token || sessionStorage.token) {
-                    const response =   await serverReq('post', '/locaSLogin')
-                    // console.log(`In Entrance page, responce: ${response}`)
-                    setUser(response)
-                    setLogin(true)
-                    history.push('/')
-
-                    
-                }
-                else{
-                    setUser()
-                }
-                
-            } catch (error) {
-               // console.log(`In Entrance page, error: ${error.response?.data?.error || error.message || error}`)
-                
-            }
-        }
+        let isMounted = true; 
         loginWithToken()
       }, [])
+
+      async function loginWithToken() {
+        try {
+            if (localStorage.token || sessionStorage.token) {
+                const response =   await serverReq('post', '/locaSLogin')
+                setUser(response)
+                setLogin(true)
+                history.push('/')
+            }
+            else{
+                setUser()
+            }
+            
+        } catch (error) {
+           // console.log(`In Entrance page, error: ${error.response?.data?.error || error.message || error}`)
+            
+        }
+    }
 
 
 

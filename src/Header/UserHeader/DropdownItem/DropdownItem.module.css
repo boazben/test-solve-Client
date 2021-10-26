@@ -1,0 +1,38 @@
+.item{
+    color: #F3F2DC;
+    padding: 5px 5px 5px 22px;
+    margin: 5px;
+    transition: 300ms;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    
+}
+
+.item:hover {
+    background-color: #757e83;
+}
+
+.backgroundIcon {
+    font-size: 12px;
+    height: 35px;
+    width: 35px;
+    margin-left: 5px;
+    background-color: #424B50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+
+
+.text {
+    font-size: 16px;
+}
+
+@media only screen and (min-width: 768px){
+    
+
+}
+

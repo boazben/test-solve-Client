@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+        align-items: center;
+    padding: 10px ;
+}
+
+.iconWarm {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+.notOpen {
+    background-color: #037E8B;
+}
+
+.inDoing {
+    background-color: #EEA396;
+}

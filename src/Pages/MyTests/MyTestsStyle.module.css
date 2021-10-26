@@ -1,10 +1,116 @@
-.TestsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.h1 {
+    margin: -8px 0 3px 0;
+    font-size: 24px;
 }
 
-.Link{
-    color: black;
-    text-decoration: none;
+.showState {
+    width: 50vw;
+    height: 50px;
+    background-color: #424B50;
+    border-radius: 10px;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
+}
+
+.show {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    color: #F3F2DC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.rightText {
+    right: 0;
+}
+
+.leftText {
+    left: 0;
+}
+
+.block {
+    height: 50px;
+    width: 50%;
+    background-color: #E57462;
+    position: absolute;
+    top: 0;
+}
+
+.left {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    left: 0;
+}
+
+.right {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    right: 0;
+}
+
+.message {
+    color: #424B50;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+.messageIcon {
+    font-size: 45px;
+}
+
+.message > h3 {
+    margin: 5px;
+}
+
+
+.testsContainer {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 5px auto;
+    padding: 5px 12px;
+}
+
+.Link {
+    width: 70%;
+    transition: 350ms;
+}
+
+.Link:hover {
+    width: 75%
+}
+
+
+@media only screen and (min-width: 768px) {
+    .h1 {
+        display: none;
+    }  
+
+    .showState {
+        margin-top: 30px;
+        width: 30vw;
+    }
+
+    .Link {
+        width: 30%;
+        max-width: 250px;
+    }
+    
+    .Link:hover {
+        width: 35%;
+        max-width: 300px;
+    }
+     
+    .testsContainer {
+        max-width: 915px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }

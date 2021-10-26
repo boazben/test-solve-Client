@@ -1,7 +1,9 @@
 .container {
- background-image: url("https://cdn.pixabay.com/photo/2017/06/20/08/12/maintenance-2422172_1280.jpg");
+ background-image: url("https://cdn.pixabay.com/photo/2018/03/31/23/41/site-3279650_1280.jpg");
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-height: calc(100vh - 73px);
+height: 40vw;
+font-size: 100px;
+color: #d65f5f;
 }

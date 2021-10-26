@@ -46,7 +46,7 @@ export default function Login({toRegister}) {
             <h2 className={Style.headline}>התחברות</h2>
 
 
-            <h3 className={Style.ask}>כבר יש לך חשבון? <span onClick={() => setRegisterState(true)} className={Style.toConnect}>התחברות</span></h3>
+            <h3 className={Style.ask}>עדיין אין לך חשבון? <span onClick={() => setRegisterState(true)} className={Style.toConnect}>הרשמה</span></h3>
 
             <i className={`fas fa-user-lock ${Style.icon}`}></i>
             

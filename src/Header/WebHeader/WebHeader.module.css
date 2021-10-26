@@ -50,8 +50,20 @@
     color: #F3F2DC;
     text-decoration: none;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .Linkactive {
     color: #C9842A;
+}
+
+.exit {
+    display: flex;
+        align-items: center;
+}
+
+.exit > i {
+    font-size: 14px;
+    margin-left: 3px;
+    margin-top: 5px;
 }
