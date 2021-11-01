@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Style from './QuestionSolve.module.css'
 
 export default function QuestionSolve({responses, question, index}) {
 
+    const answerStyle = useRef({
+        'true': Style.correct,
+        'false': Style.wrong,
+        'null': Style.regoler
+    })
+
+    
+
    
     const counter = ["א", "ב", "ג", "ד", "ה","ו", "ז", "ח","ט", "י"]
+
     function score(question, responses) {
+        if (!responses) return 0
         let questionGrade = 0
         const ansAmount = question.answers.length
         const correctAnsAmount = question.answers.filter(answer => answer.correct).length
@@ -16,10 +26,10 @@ export default function QuestionSolve({responses, question, index}) {
         
         question.answers.forEach((answer) => {
             if (answer.correct) {
-                if (responses[answer._id]) questionGrade += scoreCorrectAns;
+                if (responses["inp" + answer._id]) questionGrade += scoreCorrectAns;
             }
             else {
-                if (responses[answer._id]) questionGrade -= scoreWorngAns;
+                if (responses["inp" + answer._id]) questionGrade -= scoreWorngAns;
             }
         })
         
@@ -28,29 +38,36 @@ export default function QuestionSolve({responses, question, index}) {
         if (questionGrade % 1 != 0) questionGrade = questionGrade.toFixed(1)
         return questionGrade
     }
-    // console.log(question);
+    
+    function ifCorrect(answer, responses) {
+        if (!responses) {
+            return answer.correct ? false : null
+        } else { // Heve responses:
+            if (answer.correct) {
+                return responses["inp" + answer._id]
+            } else { // If !answer.correct : 
+                return responses["inp" + answer._id] ? false : null
+            }
+        }
+    }
+
+
     return (
         <div className={Style.container}>
-            <h3 className={Style.headline}><span>{index + 1}.</span>{question.title}</h3>
+            <h3 className={Style.headline}>{`${index + 1}. ${question.title || `שאלה מספר ${index + 1}`}`}</h3>
+            <div >ניקוד: <span className={question.score == score(question, responses) ? Style.correct : Style.wrong}>{score(question, responses)}/{question.score}</span></div>
             <h5 className={Style.description}>{question.description}</h5>
-            <div>ניקוד: <span>{score(question, responses)}/{question.score}</span></div>
             {
+                
                 question.answers.map(((answer, index) => {
-                    // console.log('answer: ' + responses);
-                    let style = 
-                    answer.correct ? 'green' :
-                    !responses[answer._id] ? 'null' : 'red';
+                    console.log(!responses ? null : responses["inp" + answer._id] ? `Style.after` : null);
                     return (
-                        <div key={index} className={`${Style[style]} ${Style.answerContainer}`}>
-                            <span className={Style.section}>{counter[index]}.</span>
-                            {answer.text}
-                            {
-                                style.includes('green') ? 
-                                <div className={`${Style.correct} ${Style.img}`}></div>
-                                : style.includes('red') ?
-                                <div className={`${Style.discorrect} ${Style.img}`}></div>
-                                : null
-                            }
+                        <div className={Style.answerContainer} key={index}>
+                            <div className={`${Style.indication} ${answer.correct ? Style.correctInd :  responses ?  responses["inp" + answer._id] ? Style.wrongInd : null : null }`}>{answer.correct ? <i className="fas fa-check"></i> : responses ?  responses["inp" + answer._id] ? <i className="fas fa-times"></i> : null : null}</div>
+                            <div className={`${Style.answerSquare} ${!responses ? null : responses["inp" + answer._id] ? Style.after : null}`}></div>
+                            <div key={index} className={`${Style.textAnswerContainer} ${answerStyle.current[`${ifCorrect(answer, responses)}`]}`}>
+                                {`${counter[index]}. ${answer.text} `}
+                            </div>
                         </div>
                     )
                 }))

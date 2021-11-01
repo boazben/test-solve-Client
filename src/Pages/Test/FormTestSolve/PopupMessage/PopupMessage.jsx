@@ -28,15 +28,13 @@ export default function PopupMessage({text}) {
                         <div className={Style.exitPuplishPopup} onClick={exit}><i className={"fas fa-times"}></i></div>                     
                         <h2 className={Style.titelPuplishPopup}>הגשת מבחן</h2>
                     </div>
-                    <div className={Style.denger}></div>
+                    <div className={Style.denger}><i className="fas fa-exclamation-triangle"></i></div>
                     <div className={Style.message}>
-                        <p>יש לשים לב!</p>
-                        <p>לאחר הגשת המבחן, לא ניתן לבצע שינויים במבחן.</p>
-                        <p>האם ברצונך להגיש בכל זאת?</p>
+                        <p>לאחר הגשת המבחן לא ניתן לשנות את התשובות </p>
                     </div>
                     <div className={Style.btnsContainer}>
-                        <input type="submit" value="כן, ברצוני להגיש"  className={Style.btn}/>
-                        <button className={Style.btn} onClick={exit}>לא, ברצוני להמשיך</button>
+                        <button className={`${Style.btn} ${Style.disallow}`} onClick={exit}>אני רוצה לחזור לבמחן</button>
+                        <input type="submit" value="אוקיי, ברצוני להגיש"  className={`${Style.btn} ${Style.allow}`}/>
                     </div>
                 </div>
             </div>

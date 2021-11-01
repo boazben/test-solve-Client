@@ -3,15 +3,30 @@
         flex-direction: column;
         align-items: flex-start;
     padding-right: 15px ;
-    margin: 10px 0 10px 0;
+    margin: 20px 0 20px 0;
 }
 
 .headline {
     margin: 0;
+    text-align: start;
 }
 
 .headline span {
     margin-left: 5px;
+}
+
+
+
+.correct {
+    color: #03909F ;
+}
+
+.wrong {
+    color: #E57462;
+}
+
+.regoler {
+    color: #262B2E;
 }
 
 .description {
@@ -20,36 +35,64 @@
     font-weight: normal;
 }
 
-.answerContainer{
+.answerContainer {
+    display:flex ;
+    position: relative;
+}
+
+.indication {
+    width: 0.7rem;
+    height: 0.7rem;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+    font-size: 10px;
+    position: absolute;
+    right: -22px;
+    top: 5.5px;
+    padding: 1px;
+    border-radius: 3px;
+}
+
+.correctInd {
+    color:  #025D66;
+    border: 2px solid #025D66;
+}
+
+.wrongInd {
+    color: #E57462;
+    border: 2px solid #E57462;
+   
+}
+
+.textAnswerContainer{
     display:flex ;
     align-items: center;
+    text-align: start;
 }
 
-.section{
-    margin-left: 4px;
+
+.answerSquare {
+    flex-shrink: 0;
+    -webkit-appearance:none;
+    display:inline-block;
+    width:10px;
+    height:10px;
+    padding:0px;
+    margin:0px;
+    margin-left:5px;
+    margin-top: 6px;
+    background:#F3F2DC;
+    border-radius:5px;
+    border:3px solid #025D66;
+    border: 3px solid #025D66;                                                
+    box-sizing:content-box;                                                   
+    line-height:18px;                                                         
+    vertical-align: sub;                                                      
+    position:relative;
 }
 
-.green {
-    color: green;
-}
-
-.red {
-    color: red;
-}
-
-.img {
-    width: 15px;
-    height: 15px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-right: 15px;
-}
-
-.correct {
-    background-image: url(./correct.png);
-}
-
-.discorrect {
-    background-image: url(./discorrect.png);
+.after{ 
+   background-color: #025D66;
+   
 }

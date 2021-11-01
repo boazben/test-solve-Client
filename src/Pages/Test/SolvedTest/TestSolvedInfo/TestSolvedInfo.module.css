@@ -1,0 +1,16 @@
+.container {
+    width: 100%;
+    border-radius: 10px;
+    color: #F3F2DC;
+    margin: auto;
+    background-color: #025D66;
+}
+
+
+@media only screen and (min-width: 768px) {
+        .container {
+            width: 50%;
+            margin: 20px auto;
+           
+        }
+}

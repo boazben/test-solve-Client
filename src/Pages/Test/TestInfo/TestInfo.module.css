@@ -1,38 +1,40 @@
-.container{
-    height: min-content;
-    width: max-content;
-    border: 3px solid black;
-    border-radius: 15px;
-    padding: 15px 10px;
-    display: flex;
-        flex-direction: column;
-        align-items: center;
+.container {
+    width: 100%;
+    border-radius: 10px;
+    color: #F3F2DC;
+    margin: 10px;
+    background-color: #025D66;
 }
 
-.examines{
-    display: flex;
-        flex-direction: column;
-        align-items: center;
-}
-
-.examinesImg {
-    height: 50px;
-    width: 50px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background-color: white;
-    border: 3px solid rgb(148, 148, 148);
-    background-position: center;
-    background-size: cover;
-}
-
-.examinesName{
+.bold {
     font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 10px;
+}
+.container > h5 {
+    margin: 0;
+    font-size: 18px;
 }
 
-.testName{
-    font-size: 20px;
-    margin-bottom: 10px;
+
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    #name {
+       order: 1
+    }
+
+    #creator {
+       order: 3
+    }
+
+    #timer {
+       order: 2
+    }
+    
 }

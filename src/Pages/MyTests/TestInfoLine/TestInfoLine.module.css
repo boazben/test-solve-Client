@@ -23,3 +23,7 @@
 .inDoing {
     background-color: #EEA396;
 }
+
+.column {
+    flex-direction: column;
+}

@@ -7,7 +7,7 @@ import DescriptionQuestionForm from './DescriptionQuestionForm/DescriptionQuesti
 import { TestFormContext } from '../TestForm'
 import AnswersForm from './AnswersForm/AnswersForm'
 import AddBut from '../../../Components/AddBut/AddBut'
-import DeleteButton from '../../../Components/DeleteButton/DeleteButton'
+import DeleteButton from '../../../Components/DeleteButton/Button'
 import ScoreForm from './ScoreForm/ScoreForm'
 import Popup from '../../../Components/Popup/Popup'
 

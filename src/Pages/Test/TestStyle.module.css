@@ -1,4 +1,30 @@
-.TitleContainer {
+.testInfoWram {
+    width: 70vw;
+    margin: auto;
+}
+
+.titleContainer > h2 {
+    margin: 20px 0 0 0; 
+
+}
+.titleContainer > h3 {
+    font-weight: normal;
+    margin: 0;
+    font-size: 20px;
+}
+
+.questionsContainer{
+    /* width: 80vw; */
+}
+
+.toTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+
+/* .TitleContainer {
     box-sizing: border-box;
     width: 50vw;
     transform: translate(-50%)

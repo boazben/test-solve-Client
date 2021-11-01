@@ -1,11 +1,13 @@
-.container{
+.ansContainer {
     display: flex;
+    align-items: center;
+}
+
+.ansContainer > input {
+    margin: 0 0 0 5px;
 }
 
 .label{
-    display: flex;
-}
+    display: flex
 
-.text{
-    margin-right: 4px;
 }

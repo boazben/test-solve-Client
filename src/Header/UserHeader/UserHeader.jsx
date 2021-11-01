@@ -60,17 +60,21 @@ export default function UserHeader() {
                         <i className="fas fa-sort-down"></i>
                         {
                             open ? 
-                            <div className={Style.dropdownOpen}>
-                                <div onClick={() => newTest()}>
-                                    <DropdownItem icon="fas fa-plus">יצירת מבחן חדש</DropdownItem>
-                                </div>
-                                <DropdownItem icon="fas fa-pencil-alt" toPage="/my-tests">פתירת מבחן</DropdownItem>
-                                <DropdownItem icon="fas fa-file-alt" toPage="/my-created">מבחנים שיצרתי</DropdownItem>
-                                <DropdownItem icon="fas fa-cog" toPage="/my-created">הגדרות חשבון</DropdownItem>
-                                <div  onClick={() => logout()}>
-                                    <DropdownItem icon="fas fa-sign-out-alt" >יציאה מהמערכת</DropdownItem>
-                                </div>
+                            <>
+                            <div className={Style.screen}>
                             </div>
+                                <div className={Style.dropdownOpen}>
+                                    <div onClick={() => newTest()}>
+                                        <DropdownItem icon="fas fa-plus">יצירת מבחן חדש</DropdownItem>
+                                    </div>
+                                    <DropdownItem icon="fas fa-pencil-alt" toPage="/my-tests">פתירת מבחן</DropdownItem>
+                                    <DropdownItem icon="fas fa-file-alt" toPage="/my-created">מבחנים שיצרתי</DropdownItem>
+                                    <DropdownItem icon="fas fa-cog" toPage="/my-created">הגדרות חשבון</DropdownItem>
+                                    <div  onClick={() => logout()}>
+                                        <DropdownItem icon="fas fa-sign-out-alt" >יציאה מהמערכת</DropdownItem>
+                                    </div>
+                                </div>
+                            </>
                             :
                             null
                         }

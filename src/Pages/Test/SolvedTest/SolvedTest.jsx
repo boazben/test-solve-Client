@@ -1,42 +1,64 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import Button from '../../../Components/DeleteButton/Button'
 import FormTestSolve from '../FormTestSolve/FormTestSolve'
+import { SolverTesContext } from '../Test'
 import TestInfo from '../TestInfo/TestInfo'
 import QuestionSolve from './QuestionSolve/QuestionSolve'
 import Style from './SolvedTest.module.css'
+import TestSolvedInfo from './TestSolvedInfo/TestSolvedInfo'
 
-export default function SolvedTest({obj}) {
-    // console.log('SolvedTest:');
-    // console.log(obj);
+export default function SolvedTest() {
+    const [obj, setObj] = useContext(SolverTesContext)
+    const [toShow, setToShow] =useState(false)
+    const info = useRef(null)
+
+    useEffect(() => {
+        window.addEventListener("scroll", listenToScroll)
+        return () => {
+            window.removeEventListener("scroll", listenToScroll);
+        }
+    }, [])
+
+    function listenToScroll() {
+        const winScroll = document.body.scrollTop ||  document.documentElement.scrollTop;
+            
+        if (winScroll <= getOffset(info.current)) {
+            setToShow(false)
+        }  else {
+            setToShow(true)
+        } 
+    }
+
+    function getup() {
+        // console.log(info.current);
+        info.current.scrollIntoView()
+    }
+
+    const getOffset = (e) => {
+        const rect = e?.getBoundingClientRect(),
+          scrollTop = 
+            window.pageYOffset ||  document.documentElement.scrollTop;
+        return rect?.top + scrollTop;
+      };
 
     return (
         <div className={Style.container}>
-            <header className={Style.info}>
-                <h1>המבחן הוגש</h1>
-                <h2><span className={Style.start}>ציון:</span><span className={Style.grade}>{obj.grade}</span></h2>
-                <h2><span className={Style.start}>מורה:</span><span className={Style.end}>{obj.test.creator.name.first + " " + obj.test.creator.name.last}</span></h2>
-                <h2><span className={Style.start}>תאריך הגשה:</span><span className={Style.end}>{new Date(obj.submissionDate).toLocaleDateString('he-IL', {timeZone:'Asia/Jerusalem'})}</span></h2>
-            </header>
-            <main className={Style.solvedTestContainer}>
-                <h2 className={Style.headerTest}>פתרון המבחן</h2>
-                <div className={Style.test}>
-                    <div className={Style.title}>{obj.test.title}</div>
-                    <div className={Style.description}>{obj.test.description}</div>
-                    <div className={Style.side}>
+            <div className={Style.infoContainer}>
+                <div className={Style.info} ref={info}>< TestSolvedInfo /></div>
+            </div>
 
-                        <div className={Style.headling}>שאלות</div>
-                        <div className={Style.questions}>
-                            {
-                                obj.questens.map((question, index) => {
-                                    return <QuestionSolve key={question._id} responses={obj.responses} question={question} index={index}/>
-                                })
-                            }
-                        </div>
-                    </div>
+            <div className={Style.titleContainer}>
+                <h2>{obj.test.title || obj.test.name || `המבחן של ${obj.test.creator.name.first} ${obj.test.creator.name.last}`}</h2>
+                <h3>{obj.test.description || "פתרון המבחן"}</h3>
+            </div>
 
-                </div>
+            {
+                obj.questens.map((question, index) => {
+                    return <QuestionSolve responses={obj.responses} question={question} index={index} key={index} />
+                })
+            }
 
-            </main>
-            
+            {toShow && <div className={Style.toTop} onClick={getup}><Button circle={true}><i className="fas fa-arrow-up"></i></Button></div>}
         </div>
     )
 }

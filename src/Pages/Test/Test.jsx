@@ -6,6 +6,8 @@ import Style from './TestStyle.module.css'
 import TestInfo from './TestInfo/TestInfo';
 import FormTestSolve from './FormTestSolve/FormTestSolve';
 import SolvedTest from './SolvedTest/SolvedTest';
+import TestToSolve from '../MyTests/TestToSolve/TestToSolve'
+import Button from '../../Components/DeleteButton/Button';
 
 export const SolverTesContext = createContext()
 export const SubmitContext = createContext()
@@ -13,17 +15,45 @@ export const SubmitContext = createContext()
 export default function Test() {
     const { testId } = useParams()
     const [obj, setObj] = useState()
+    const [toShow, setToShow] =useState(false)
     const submitInput = useRef(null)
+    const info = useRef(null)
 
     useEffect(() => {
+        window.addEventListener("scroll", listenToScroll)
         getTest()
+        return () => {
+            window.removeEventListener("scroll", listenToScroll);
+        }
     }, [])
+
+    function listenToScroll() {
+        const winScroll = document.body.scrollTop ||  document.documentElement.scrollTop;
+            
+        if (winScroll <= getOffset(info.current)) {
+            setToShow(false)
+        }  else {
+            setToShow(true)
+        } 
+    }
+
+    function getup() {
+        // console.log(info.current);
+        info.current.scrollIntoView()
+    }
+
+    const getOffset = (e) => {
+        const rect = e?.getBoundingClientRect(),
+          scrollTop = 
+            window.pageYOffset ||  document.documentElement.scrollTop;
+        return rect?.top + scrollTop;
+      };
 
     async function getTest() {
         try {
             // console.log(`The id Test: ${testId}`);
             const res = await serverReq('post', '/get_test', {id: testId});
-            // console.log(res);
+            console.log(res);
             setObj(res)
         } catch (error) {
             console.log(error.response?.data?.error || error.message || error);
@@ -49,29 +79,30 @@ export default function Test() {
     }
 
     return (
-        <div>
-            {!obj ? <Loding text={"טוען מבחן..."}/> :
+        <SolverTesContext.Provider value={[obj, setObj]} >
+        {
+            !obj ? <Loding text={"טוען מבחן..."}/> :
             obj?.status?.includes("Done") || obj?.status?.includes("Closed") ?
-            <SolvedTest obj={obj} /> :
-            <SolverTesContext.Provider value={[obj, setObj]} >
-                <main className={Style.testContainer}>
-                    <div className={Style.headerContainer}>
-                        <div className={Style.TitleContainer}>
-                            <h1 className={Style.title}>{obj.test.title || obj.test.name || "בהצלחה במבחן!"}</h1>
-                            <h2 className={Style.description}>{obj.test.description}</h2>
-                        </div>
-                        <SubmitContext.Provider value={submitInput} >
-                            <form ref={submitInput} className={Style.form}  onSubmit={e => submit(e)} > 
-                                <div className={Style.infoContainer}>
-                                    <TestInfo/>
-                                </div>
-                                <FormTestSolve />
-                            </form>
-                        </ SubmitContext.Provider>
+            <SolvedTest /> :
+            <div className={Style.testInfoWram} >
+                    <div className={Style.info} ref={info}>< TestInfo /></div>
+
+                    <div className={Style.titleContainer}>
+                        <h2>{obj.test.title || obj.test.name || `המבחן של ${obj.test.creator.name.first} ${obj.test.creator.name.last}`}</h2>
+                        <h3>{obj.test.description || "בהצלחה במבחן"}</h3>
                     </div>
-                </main>
-            </SolverTesContext.Provider>
-            }
-        </div>
+
+                    <form className={Style.questionsContainer} onSubmit={e => submit(e)}>
+                        <FormTestSolve />
+                    </form>
+
+                    {toShow && <div className={Style.toTop} onClick={getup}><Button circle={true}><i className="fas fa-arrow-up"></i></Button></div>}
+
+            </div>
+            
+            
+        }
+        </SolverTesContext.Provider>
+        
     )
 }
