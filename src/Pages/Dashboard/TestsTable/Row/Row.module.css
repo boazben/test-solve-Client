@@ -1,0 +1,56 @@
+.rowContainer {
+    display: contents;
+    transition: color 300ms;
+}
+
+.Distributed {
+    color: #E57462 ;
+}
+.Started {
+    color: #C06635;
+}
+.Closed {
+    color: #025D66;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+.center {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.dropdownIcon {
+    color: #037E8B;
+    transition: color 300ms;
+    cursor: pointer;
+}
+
+
+
+.dropdownItem {
+    margin: auto;
+    width: 25px;
+    height: 25px;
+    background-color: #037E8B ;
+    border-radius: 50%;
+    color: #F3F2DC;
+    transition: 0   ;
+}
+
+
+.dropdown {
+ 
+}
+
+
+@media only screen and (min-width: 768px){
+    
+}

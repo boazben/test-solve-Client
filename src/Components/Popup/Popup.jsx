@@ -4,33 +4,38 @@ import Style from './Popup.module.css'
 
 // A regolar massege popup.
 
-export default function Popup({title, message, btnText, state}) {
+export default function Popup({title, message, backText, btnText, state, func=false, info, icon=false}) {
     const [popup, setPopup] = state
     
-    function disappear(e) {
+    function closed(e) {
         if (e.target === e.currentTarget)  setPopup(false)
     }
 
-    function exit() {
+    function doEction() {
         setPopup(false)
+        console.log(info);
+        func(info)
     }
 
+
+
     return (
-        <div className={Style.background} onClick={e => disappear(e)}>
-            <div className={Style.messageDiv}>
-                <div className={Style.header}>
-                    <div className={Style.exit} onClick={exit}><i className={"fas fa-times"}></i></div>                     
-                    <h2 className={Style.title}>{title}</h2>
-                </div>
-                {/* <div className={Style.denger}></div> */}
-                <div className={Style.message}>
-                   <p>{message}</p>
-                </div>
-                <div className={Style.btnsContainer}>
-                    <button className={Style.btn} onClick={exit}>{btnText}</button>
+        <div className={Style.backgroundPopup} onClick={(e) => closed(e)}>
+                <div className={Style.puplishDiv}>
+                    <div className={Style.headerPopup}>
+                        <div className={Style.exitPopup} onClick={() => setPopup(false)}><i className={"fas fa-times"}></i></div>                     
+                        <h2 className={Style.titelPopup}>{title}</h2>
+                    </div>
+                    {icon && <div className={Style.icon}><i className={icon}></i></div>}
+                    <div className={Style.message}>
+                        <p>{message}</p>
+                    </div>
+                    <div className={Style.btnsContainer}>
+                        <button className={`${Style.btn} ${Style.allow}`} onClick={() => setPopup(false)}>{backText}</button>
+                        { func && <button className={`${Style.btn} ${Style.disallow}`} onClick={doEction}>{btnText}</button>}
+                    </div>
                 </div>
             </div>
-        </div>
        
     )
 }

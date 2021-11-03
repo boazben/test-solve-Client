@@ -1,59 +1,63 @@
-.background {
-    background-color: rgba(0, 0, 0, 0.342);
-    height: 100vh;
+.backgroundPopup {
+    height:100vh;
     width: 100vw;
+    background-color: hsl(0deg 0% 0% / 10%);
     position: fixed;
+    z-index: 1;
     top: 0;
     right: 0;
     cursor: pointer;
 }
 
-.messageDiv {
+.puplishDiv {
+    color: #F3F2DC;
+    box-sizing: content-box;
     position: fixed;
     height: max-content;
     width: max-content;
-    background-color: white;
+    max-width: 80vw;
+    background-color: #262B2E;
     border-radius: 40px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-sizing: content-box;
     cursor: auto;
-    padding: 15px 50px 15px 50px;
-    width: 500px;
+    /* padding: 15px 50px 15px 50px; */
+    padding: 15px;
 }
 
-.header {
+.headerPopup {
     display: flex;
 }
 
-.exit{
+.exitPopup{
     position: absolute;
     top: 0;
     right: 0;
     height: 25px;
     width: 25px;
-    border: 2px solid red;
+    border: 2px solid #E57462;
+    background-color: #E57462;
     border-radius: 50%;
     display: flex;
         align-items: center;
         justify-content: center;
-    color: red;
+    color: #F3F2DC;
     margin-top: 15px;
     margin-right: 15px;
     cursor: pointer;
+    transition: 200ms;
 }
 
-.exit:hover {
- background-color: red;
- color: white;
+.exitPopup:hover {
+ background-color: #262B2E;
+ color: #E57462;
 }
 
 
 
-.title {
-    font-family: 'Rubik', sans-serif;
-    font-size: 42px;
+.titelPopup {
+    font-size: 38px;
     margin: 5px auto 10px auto; 
     
 
@@ -64,47 +68,79 @@
 }
 
 .errorMessage {
-    color: red;
+    color: #E57462;
     margin-top: 20px;
 }
 
-.denger {
+.icon {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    background-color: #68767E;
 
-    margin-top: 10px;
-    height: 50px;
-    /* background-image: url('./denger.svg'); */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
 }
 
 .message {
     
 }
 
+.message > p{
+    font-size: 22px;
+}
+
+.btnsContainer {
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 .btn {
+    font-family: 'Alef', sans-serif;
     cursor: pointer;
-    background-color: white;
-    color: hsl(193deg 63% 52%);
-    border: 3px solid hsl(193deg 63% 52%);
-    border-radius: 20px;
+    /* background-color: white; */
+    border: none;
+    color: #F3F2DC;
+    border-radius: 10px;
     width: max-content;
-    font-size: 16px;
+    font-size: 22px;
     text-align: center;
-    padding: 5px 10px 5px 10px;
-    margin: 20px;
-    font-family: 'Rubik', sans-serif;
+    padding: 10px 20px 10px 20px;
+    margin: 10px;
     font-weight: bolder;
+    transition: 300ms;
 }
 
 .btn:hover {
-    background-color: hsl(193deg 63% 52%); 
-    color: white;
+    padding: 10px 13vw;
 }
 
-@media only screen and (max-width: 536px){
-    .puplishDiv {
-        height: min-content;
-        width: 250px;
+.allow {
+    background-color: #025D66;
+   
+}
+
+
+.disallow {
+    background-color: #E57462;
+}
+
+
+@media only screen and (min-width: 768px){
+    .btnsContainer {
+        flex-direction: row;
     }
+
+    .btn:hover {
+        padding: 10px 20px;
+        border-radius: 20px;
+    }
+     
 }

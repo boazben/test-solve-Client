@@ -19,8 +19,9 @@ export default function Dashboard() {
         }
     }
     return (
-        <div>
-            <button className={Style.but} onClick={newTest}>יצירת מבחן חדש</button>
+        <div className={Style.container}>
+            <h1 className={Style.title}>מבחנים שיצרתי</h1>
+            <button className={Style.btn} onClick={newTest} title="ליצירת מבחן חדש"><span className={Style.btnText}>+</span> ליצירת מבחן חדש</button>
             <TestsTable />
         </div>
     )

@@ -1,22 +1,27 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    border: 2px solid #424B50;
+    margin: 10px;
+    transition: 300ms;
+  }
+
+  th {
+    background-color: #424B50;
+    color: #F3F2DC;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: right;
+    padding: 5px;
+    border: none;
   }
   
-  td, th {
-    border: 1px solid #dddddd;
+  td {
+    border: 0;
     text-align: right;
     padding: 8px;
   }
-  
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-  
-    tr:hover{
-      background-color: rgb(199, 199, 199)
-  
-    }
+
 
   .textLink {
     margin: 10px;
@@ -29,4 +34,28 @@ table {
 
   .deleteTest {
     cursor: pointer;
+  }
+
+  .web {
+    display: none;
+  }
+
+  .mobile {
+    display: table-cell;
+  }
+  
+.pointer
+  {
+    cursor: pointer;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .web {
+      display: table-cell;
+    }
+
+    .mobile {
+      display: none;
+    }
+
   }

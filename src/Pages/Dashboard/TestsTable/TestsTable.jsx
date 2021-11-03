@@ -1,16 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getToken, serverReq } from '../../../functions'
+import Row from './Row/Row'
 import TestName from './TestName/TestName'
 import './TestsTableStyle.css'
 
+export const DeleteTest = createContext()
+
 export default function TestsTable() {
-  let counter = 0
+  const table = useRef(null)
   const [tableState, setTableState] = useState([])
+  const [sort, setSort] = useState({
+    name: "null",
+    downToUp: true
+  })
+  const [showInfo, setShowInfo] = useState(false)
+  
+ 
+
+  console.log(tableState);
 
   useEffect(() => {
     getTestes()
   }, [])
+
+  async function deleteTest(_id) {
+    try {
+      const test = await serverReq('put', '/edit_test', {"idTest": _id, "newData": {"active": false}})
+      getTestes()
+    } catch (error) {
+      console.log(error.response?.data?.error || error.message || error);
+    }
+  }
   
   async function getTestes() {
     try {
@@ -22,46 +43,136 @@ export default function TestsTable() {
     }
   }
 
-  async function deleteTest(_id) {
-    try {
-      const test = await serverReq('put', '/edit_test', {"idTest": _id, "newData": {"active": false}})
-      getTestes()
-    } catch (error) {
-      console.log(error.response?.data?.error || error.message || error);
+  function sorted(columnName) {
+
+      switch (columnName) {
+
+        case "testName":
+          sortedWithName("testName", "name")
+          break;
+
+        case "status":
+          sortedWithName("status", "status_he")
+          break;
+
+        case "createdDate":
+          sortedWithName("createdDate", "created")
+          break;
+          
+        case "deadline":
+          sortedWithName("deadline", "deadline")
+          break;
+
+
+      
+        default:
+          break;
+      }
+
+  }
+
+  function sortedWithName(name, objName) {
+    if(sort.name.includes(name)) {
+      sort.downToUp ?
+      setTableState(tableState.sort((a, b) => (a[objName] > b[objName]) ? -1 : ((b[objName] > a[objName]) ? 1 : 0)))
+      : setTableState(tableState.sort((a, b) => (a[objName] > b[objName]) ? 1 : ((b[objName] > a[objName]) ? -1 : 0)))
+      
+      setSort({
+        name: name,
+        downToUp: !sort.downToUp
+      })
+
+    } else {
+      setTableState(tableState.sort((a, b) => (a[objName] > b[objName]) ? 1 : ((b[objName] > a[objName]) ? -1 : 0)))
+      setSort({
+        name: name,
+        downToUp: true
+      })
+
     }
   }
 
+  
+
   return (
-    <div>
-        <table>
+    <>
+        <table ref={table}>
         <tbody>
         <tr>
-          <th style={{width: '2px'}}>מספר מבחן</th>
-          <th>שם מבחן</th>
-          <th>סטטוס</th>
-          <th>סוג</th>
-          <th>תאריך יצירה</th>
-          <th style={{width: '100px'}}>קישור</th>
-          <th style={{width: '100px'}}>מחק</th>
+          <th className="mobile"></th>
+
+          {/* Name */}
+          <th onClick={() => sorted("testName")}>
+          שם מבחן
+          <span>
+            {
+            sort.name.includes("testName") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            } 
+          </span>
+          </th>
+
+            {/* Status */}
+          <th onClick={() => sorted("status")}>
+            סטטוס
+            <span>
+            {
+            sort.name.includes("status") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            } 
+            </span>
+          </th>
+
+
+            {/* Created Date */}
+          <th className="web" onClick={() => sorted("createdDate")}>
+            תאריך יצירה
+            <span>
+            {
+            sort.name.includes("createdDate") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            } 
+            </span>
+          </th>
+
+
+            {/* Deadline */}
+          <th className="web" onClick={() => sorted("deadline")}>
+            דד-ליין
+            <span>
+            {
+            sort.name.includes("deadline") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            } 
+            </span>
+          </th>
+
+            {/* Link */}
+          <th className="web" onClick={() => sorted("link")}>
+            קישור
+            <span>
+            {
+            sort.name.includes("link") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            } 
+            </span>
+          </th>
+
+            {/* Delete */}
+          <th className="web" onClick={() => sorted("delete")}>
+            מחיקה
+            <span>
+            {
+            sort.name.includes("delete") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            } 
+            </span>
+          </th>
+
+
+
         </tr>
-        {tableState.map(({name, status_he, created, typeForm_he, _id}) => {
-          counter++
-          return (
-            <tr key={_id}>
-              <td key={_id + 'num'}>{counter}.</td>
-              <td key={_id + 'name'}><TestName testId={ _id} key={_id}/></td>
-              <td key={_id + 'status'}>{status_he}</td>
-              <td key={_id + 'typeForm'}>{typeForm_he}</td>
-              <td key={_id + 'created'}>{new Date(created).toLocaleDateString('en-GB')}</td>
-              <td key={_id + 'created' + '1'}><Link className='Link' to={`/test-form/${_id}`}><i className="fas fa-pencil-alt"></i><span className="textLink">עריכה</span></Link></td>
-              <td key={_id + 'delete'}><div className='deleteTestCont'><i className="fas fa-trash deleteTest" onClick={() => deleteTest(_id)}></i></div></td>
-            </tr>
-          )
+        <DeleteTest.Provider value={deleteTest}>
+        {tableState.map((test, index) => {
+          return <Row key={index} test={test}/>
         })}
-       
+        </DeleteTest.Provider >
        </tbody>
       </table>
-    </div>
+    </>
   )
 }
-//{name || 'ללא שם'}
