@@ -1,59 +1,86 @@
-.testFormContainer {
-    /* width: 500px; */
-    /* border: 3px solid red; */
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-top: 10px;
-    display: flex;
-        align-items: center;
-        flex-direction: column;
+mainContainer {
+    width: 80vw
 }
 
-.headerTestForm {
-    width: 100%;
-    /* border: 3px solid red; */
+.title {
+    margin: 0;
+    margin-top: -10px;
+    font-size: 22px;
+}
+
+.iconsGroupWarp {
+    width: 100vw;
+    background-color: #F3F2DC;
+    height: 20px;
+    position: sticky;
+    top: 0px;
+    padding: 10px 0 10px 0;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.iconsGroup{
     display: flex;
     justify-content: space-between;
-    
-}
-
-.titelFormContainer{
-    width: 100%;
-}
-
-
-.QuestionsFormContainer {
-    margin: auto;
-    display: flex;
-    width: 90vw;
-        /* border: 3px solid red; */
-    box-sizing: border-box;
-    flex-direction: column;
-}
-
-.message {
-    color: #DD5523;
-    margin: 5px;
-}
-
-
-.btn {
+    align-items: center;
+    width: 100px;
+    margin: 10px auto;
+   
     cursor: pointer;
-    background-color: white;
-    color: #B73625 ;
-    border: 3px solid #B73625 ;;
-    border-radius: 20px;
-    width: max-content;
-    font-size: 16px;
-    text-align: center;
-    padding: 5px 10px 5px 10px;
-    margin: 5px;
-    font-family: 'Rubik', sans-serif;
-    font-weight: bolder;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.ldsRing {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+    
   }
-  
-  .btn:hover {
-    background-color: #B73625 ; 
-    color: white;
+  .ldsRing div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+    border: 2px solid #A5A5A5;
+    border-radius: 50%;
+    animation: ldsRing 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #A5A5A5 transparent transparent transparent;
+  }
+  .ldsRing div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .ldsRing div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .ldsRing div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes ldsRing {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
+  @media only screen and (min-width: 768px){
+    .title {
+        display: none;
+    }
+
+    .iconsGroupWarp{
+        position: absolute;
+        width: min-content;
+        left: 20px;
+        top: 150px
+    }
+  }

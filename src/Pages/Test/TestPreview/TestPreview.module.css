@@ -1,4 +1,4 @@
-.container {
+.testInfoWram {
     width: 70vw;
     margin: auto;
 }
@@ -13,6 +13,10 @@
     font-size: 20px;
 }
 
+.questionsContainer{
+    /* width: 80vw; */
+}
+
 .toTop {
     position: fixed;
     bottom: 20px;
@@ -21,7 +25,7 @@
 
 
 .iconsGroupWarp {
-    width: 100vw;
+    /* width: 100vw; */
     background-color: #F3F2DC;
     height: 20px;
     position: sticky;
@@ -52,3 +56,5 @@
     }
     
 }
+
+

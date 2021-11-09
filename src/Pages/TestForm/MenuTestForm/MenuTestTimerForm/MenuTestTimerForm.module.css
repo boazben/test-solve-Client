@@ -1,39 +1,56 @@
 .container {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 7px;
+    
 }
 
 .timeContainer {
     display: flex;
-    flex-direction: row;
-    margin: auto;
+   
 }
 
+.clock {
+    color: #262B2E;
+    font-size: 20px;
+    margin-right: 2.5px;
+}
 
 
 .timeText {
-    font-size: 14px;
+    font-family: 'Alef', sans-serif;
+    font-size: 16px;
     width: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #262B2E;
+    background-color: #F9F9EB;
     
 }
 .timeInput {
+    font-family: 'Alef', sans-serif;
+    font-size: 16px;
     width: 20px;
     border: none;
-    border-bottom: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid #262B2E;
     outline: none;
     margin: 0;
     padding: 0; 
     line-height:0;
-    transition: 100ms;
+    transition: 250ms;
+    background-color: #F9F9EB;
+    font-weight: bold;
 }
 
 .timeInput:focus {
-    border-bottom: 3px solid rgb(243, 90, 90);
+    border-bottom: 3px solid #E57462;
     margin: 0;
     padding: 0; 
     line-height:0;
-    
+    background-color: #F9F9EB;
+    font-family: 'Alef', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
 }   
 
 .spans {
@@ -43,7 +60,7 @@
 }
 
 .label {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: bold;  
-    color: rgb(211, 211, 211);
+    color: #262B2E;
 }   

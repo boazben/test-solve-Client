@@ -11,6 +11,7 @@ import Homepage from '../Pages/Homepage/Homepage'
 import MyTests from '../Pages/MyTests/MyTests'
 import Test from '../Pages/Test/Test'
 import TestForm from '../Pages/TestForm/TestForm'
+import TestPreview from '../Pages/Test/TestPreview/TestPreview'
 import './app.css'
 
 export const LoginState = createContext()
@@ -75,6 +76,7 @@ function App() {
             <Route path="/test/:testId" component={Test} />
             <Route path="/about" component={About} />
             <Route path="/website-information" component={About} />
+            <Route path="/test-preview/:testId" component={TestPreview} />
           </Switch>
           <Footer />
       </Entrance>

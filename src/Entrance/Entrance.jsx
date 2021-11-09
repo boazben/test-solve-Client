@@ -27,15 +27,17 @@ export default function Entrance({ children }) {
                 const response =   await serverReq('post', '/locaSLogin')
                 setUser(response)
                 setLogin(true)
-                history.push('/')
+               
             }
             else{
                 setUser()
             }
             
         } catch (error) {
-           // console.log(`In Entrance page, error: ${error.response?.data?.error || error.message || error}`)
-            
+            window.localStorage.removeItem("token")
+            window.sessionStorage.removeItem("token")
+            window.location.reload(false)
+            history.push('/register')
         }
     }
 

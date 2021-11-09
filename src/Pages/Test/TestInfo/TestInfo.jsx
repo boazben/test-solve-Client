@@ -8,6 +8,10 @@ import WidthScreen from '../../../App/App'
 export default function TestInfo() {
     const [obj, setObj] = useContext(SolverTesContext)
     const [width, setWidth] = useState(window.innerWidth)
+    const start = useRef(
+        !obj.test ?
+        obj : obj.test
+    )
     
     useEffect(() => {
         const getWidth = () => {
@@ -46,13 +50,13 @@ export default function TestInfo() {
     return (
         <div className={`${Style.container} `}>
             {
-                obj.status.includes("In Doing") ?
+                (obj.test && obj.status.includes("In Doing")) || !obj.test?
                 <>
                     <div id={Style.name}>
-                    <TestInfoLine icon="fas fa-file-alt" status={"reguler"} column={width > 768 && true} >{obj.test.name || `המבחן של ${obj.test.creator.name.first}  ${obj.test.creator.name.last}`}</TestInfoLine></div>
+                    <TestInfoLine icon="fas fa-file-alt" status={"reguler"} column={width > 768 && true} >{start.current.name || `המבחן של ${start.current.creator.name.first}  ${start.current.creator.name.last}`}</TestInfoLine></div>
                     
                     <div id={Style.creator}>
-                    <TestInfoLine icon="fas fa-chalkboard-teacher" status={"reguler"} column={width > 768 && true}>{`${obj.test.creator.name.first}  ${obj.test.creator.name.last}`}</TestInfoLine></div>
+                    <TestInfoLine icon="fas fa-chalkboard-teacher" status={"reguler"} column={width > 768 && true}>{`${start.current.creator.name.first}  ${start.current.creator.name.last}`}</TestInfoLine></div>
                     
                     <div id={Style.timer}>
                     <span className={Style.bold}><TestInfoLine icon="fas fa-stopwatch" status={"reguler"} column={width > 768 && true}><Timer /></TestInfoLine></span></div>

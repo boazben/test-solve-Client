@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { serverReq } from '../../functions';
 import Loding from '../../Components/Loding/Loding'
 import Style from './TestStyle.module.css'
@@ -16,8 +16,8 @@ export default function Test() {
     const { testId } = useParams()
     const [obj, setObj] = useState()
     const [toShow, setToShow] =useState(false)
-    const submitInput = useRef(null)
     const info = useRef(null)
+    const creator = useRef(null)
 
     useEffect(() => {
         window.addEventListener("scroll", listenToScroll)
@@ -54,6 +54,7 @@ export default function Test() {
             // console.log(`The id Test: ${testId}`);
             const res = await serverReq('post', '/get_test', {id: testId});
             console.log(res);
+            if (!res.test) creator.current = true
             setObj(res)
         } catch (error) {
             console.log(error.response?.data?.error || error.message || error);
@@ -85,12 +86,30 @@ export default function Test() {
             obj?.status?.includes("Done") || obj?.status?.includes("Closed") ?
             <SolvedTest /> :
             <div className={Style.testInfoWram} >
-                    <div className={Style.info} ref={info}>< TestInfo /></div>
-
-                    <div className={Style.titleContainer}>
-                        <h2>{obj.test.title || obj.test.name || `המבחן של ${obj.test.creator.name.first} ${obj.test.creator.name.last}`}</h2>
-                        <h3>{obj.test.description || "בהצלחה במבחן"}</h3>
+                {
+                    creator && 
+                    <div className={Style.iconsGroupWarp}>
+                        <ul className={`${Style.iconsGroup}`}>
+                            <li className={Style.icon}><i className="fa fa-share-alt"></i></li>
+                            <li className={Style.icon}><i className="fas fa-chart-pie"></i></li>
+                            <li className={Style.icon}><Link to={`/test-form/${obj._id}`}><i className="fas fa-pencil-alt"></i></Link></li>
+                            <li className={Style.icon}><i className="fas fa-cog"></i></li>
+                        </ul>
                     </div>
+                }
+                    <div className={Style.info} ref={info}>< TestInfo /></div>
+                    {
+                        creator ?
+                        <div className={Style.titleContainer}>
+                            <h2>{obj.title || obj.name || `המבחן של ${obj.creator.name.first} ${obj.creator.name.last}`}</h2>
+                            <h3>{obj.description || "בהצלחה במבחן"}</h3>
+                        </div>
+                        :
+                        <div className={Style.titleContainer}>
+                            <h2>{obj.test.title || obj.test.name || `המבחן של ${obj.test.creator.name.first} ${obj.test.creator.name.last}`}</h2>
+                            <h3>{obj.test.description || "בהצלחה במבחן"}</h3>
+                        </div>
+                    }
 
                     <form className={Style.questionsContainer} onSubmit={e => submit(e)}>
                         <FormTestSolve />

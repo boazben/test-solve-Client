@@ -14,8 +14,10 @@ export default function FormTestSolve() {
     const [popup, setPopup] = useState(false)
 
     function openPopup(e) {
-        e.preventDefault()
-        setPopup(true)
+        if (obj.test) {
+            e.preventDefault()
+            setPopup(true)
+        }
     }
 
     

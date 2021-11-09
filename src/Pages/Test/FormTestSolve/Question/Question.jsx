@@ -11,7 +11,7 @@ export default function Question({question, index}) {
 
             <div className={Style.description}>
                 <span>
-                {`${question.score} נק'`}
+                {`${question.score || '0'} נק'`}
                 </span>
                 {question.description}  
             </div>

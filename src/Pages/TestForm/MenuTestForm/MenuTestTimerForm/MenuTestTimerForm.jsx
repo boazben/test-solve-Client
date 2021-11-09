@@ -23,7 +23,6 @@ export default function MenuTestTimerForm() {
 
     function change(timeType) {
         if (test.status.includes('Started') || test.status.includes('Closed')) {
-            setPopup(true)
         } else {
             let newState
             switch (timeType) {
@@ -176,7 +175,7 @@ export default function MenuTestTimerForm() {
  
     return (
         <div className={Style.container}>
-        <div>זמן לפתרון מבחן:</div> 
+        <i className={`far fa-clock ${Style.clock}`}></i>
         <div className={Style.timeContainer}>
             {
                 seconds_state === 'text' ? 
@@ -212,8 +211,7 @@ export default function MenuTestTimerForm() {
             <form ref={hours} onSubmit={e => saveHours(e)} >
                 <input id="hours" name="hours" min={0} max={10} onFocus={e => e.target.select()} className={Style.timeInput} type="number" autoFocus onBlur={() => toSubmit('hours')} onKeyDown={(e) => e.key === 'Enter' && toSubmit('hours')}/>  
             </form>
-            }   
-             {popup ? < Popup state={[popup, setPopup]} title={"שגיאה"} message={"לא ניתן לשנות את זמן הבחינה כאשר המבחן סגור או כאשר התחילו להשיב עליו"} btnText={"אוקיי, הבנתי"} /> : null}
+            } 
         </div>
     </div>
     )

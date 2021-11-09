@@ -11,6 +11,7 @@ export default function SolvedTest() {
     const [obj, setObj] = useContext(SolverTesContext)
     const [toShow, setToShow] =useState(false)
     const info = useRef(null)
+    
 
     useEffect(() => {
         window.addEventListener("scroll", listenToScroll)
@@ -40,6 +41,8 @@ export default function SolvedTest() {
             window.pageYOffset ||  document.documentElement.scrollTop;
         return rect?.top + scrollTop;
       };
+
+     
 
     return (
         <div className={Style.container}>

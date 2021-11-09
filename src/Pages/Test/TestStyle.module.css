@@ -24,6 +24,41 @@
 }
 
 
+.iconsGroupWarp {
+    width: 80vw;
+    margin: auto;
+    background-color: #F3F2DC;
+    height: 20px;
+    position: sticky;
+    top: 0px;
+    padding: 10px 0 10px 0;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.iconsGroup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+    margin: 10px auto;
+   
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 768px){
+    .iconsGroupWarp{
+        position: absolute;
+        width: min-content;
+        left: 20px;
+        top: 150px
+    }
+    
+}
+
+
 /* .TitleContainer {
     box-sizing: border-box;
     width: 50vw;

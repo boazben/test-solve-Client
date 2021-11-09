@@ -1,31 +1,38 @@
-.title {
-    margin: -10px;
-    font-size: 20px;
-    font-weight: normal;
-    width: 100%;
-}
-
-
-.scoreContainer {
-    margin: -10px auto 0 auto;
-    display: flex;
+.container {
     width: 70%;
-    justify-content: space-between;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: -10px auto;
+    position: relative;
 }
 
-.score{
-    text-align: right;
-    width: 380px;
-    font-size: 20px;
+
+
+.number {
+    font-size: 20px;  
+    margin-left: 20px; 
+    position: absolute; 
+    right: -5px;
 }
+
+.iconsContainer{
+    position: absolute;
+    left: -30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 
 .ldsRing {
     display: inline-block;
-    position: relative;
+    position: absolute;
     width: 20px;
     height: 20px;
-    
+    left: -20px;
+    top: 0;
   }
   .ldsRing div {
     box-sizing: border-box;
@@ -55,33 +62,5 @@
     100% {
       transform: rotate(360deg);
     }
-  }
-  
-  .deleteQuestion {
-    margin: 40px auto 10px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media only screen and (min-width: 768px){
-    .QuestionFormContainer {
-      margin: 20px 0 20px 30vw;
-
-    }
-
-    .title {
-      text-align: start;
-      margin-right: 10vw;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-
-    .deleteQuestion { 
-      justify-content: flex-start;
-      margin: 50px 5vw -28px 0;
-
-    }
-
   }
   

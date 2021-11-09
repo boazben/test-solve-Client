@@ -106,7 +106,7 @@ export default function TestsTable() {
           שם מבחן
           <span>
             {
-            sort.name.includes("testName") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            sort.name.includes("testName") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i className="fas fa-long-arrow-alt-up"></i> : null
             } 
           </span>
           </th>
@@ -116,49 +116,49 @@ export default function TestsTable() {
             סטטוס
             <span>
             {
-            sort.name.includes("status") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            sort.name.includes("status") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i className="fas fa-long-arrow-alt-up"></i> : null
             } 
             </span>
           </th>
 
 
             {/* Created Date */}
-          <th className="web" onClick={() => sorted("createdDate")}>
+          <th className="webTable" onClick={() => sorted("createdDate")}>
             תאריך יצירה
             <span>
             {
-            sort.name.includes("createdDate") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            sort.name.includes("createdDate") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i className="fas fa-long-arrow-alt-up"></i> : null
             } 
             </span>
           </th>
 
 
             {/* Deadline */}
-          <th className="web" onClick={() => sorted("deadline")}>
+          <th className="webTable" onClick={() => sorted("deadline")}>
             דד-ליין
             <span>
             {
-            sort.name.includes("deadline") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            sort.name.includes("deadline") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i className="fas fa-long-arrow-alt-up"></i> : null
             } 
             </span>
           </th>
 
             {/* Link */}
-          <th className="web" onClick={() => sorted("link")}>
+          <th className="webTable" onClick={() => sorted("link")}>
             קישור
             <span>
             {
-            sort.name.includes("link") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            sort.name.includes("link") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i className="fas fa-long-arrow-alt-up"></i> : null
             } 
             </span>
           </th>
 
             {/* Delete */}
-          <th className="web" onClick={() => sorted("delete")}>
+          <th className="webTable" onClick={() => sorted("delete")}>
             מחיקה
             <span>
             {
-            sort.name.includes("delete") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i class="fas fa-long-arrow-alt-up"></i> : null
+            sort.name.includes("delete") ? sort.downToUp ? <i className="fas fa-long-arrow-alt-down"></i> : <i className="fas fa-long-arrow-alt-up"></i> : null
             } 
             </span>
           </th>

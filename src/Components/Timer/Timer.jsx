@@ -24,7 +24,7 @@ export default function Timer() {
     function changeTime() {
         const {endDate} = obj
         let localTime = endDate - Date.now()
-        if (localTime <= 0) {
+        if (localTime <= 0 && obj.test) {
             console.log('The time over!'); 
             clearInterval(interval.current)
             submitInput.current.requestSubmit() 

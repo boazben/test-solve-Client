@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Loding from '../../Components/Loding/Loding'
 import { serverReq } from '../../functions'
 import DescriptionForm from './DescriptionForm/DescriptionForm'
@@ -10,6 +10,9 @@ import QuestionForm from './QuestionForm/QuestionForm'
 import MenuTestForm from './MenuTestForm/MenuTestForm'
 import Publish from './Publish/Publish'
 import Popup from '../../Components/Popup/Popup'
+import InputForm from './InputForm/InputForm'
+import Icon from '../../Components/Icon/Icon'
+import TestSetting from './TestSetting/TestSetting'
 
 export const TestFormContext = createContext()
 export const PublishPopupContext = createContext()
@@ -18,8 +21,10 @@ export default function TestForm() {
 
     const [test, setTest] = useState()
     const { testId } = useParams()
-    const [popup, setPopup] = useState(false)
-    const [publishPopup, setPublishPopup] = useState(false)
+    const [lodingAdd, setLodingAdd] = useState(false)
+    const [dropdown, setDropdown] = useState(false)
+    // const [popup, setPopup] = useState(false)
+    // const [publishPopup, setPublishPopup] = useState(false)
     
     useEffect(() => {
         getTest()
@@ -36,6 +41,27 @@ export default function TestForm() {
         }
     }
 
+    async function addQuestion() {
+        setLodingAdd(true)
+        try {
+            await serverReq('put', '/create_question', {"idTest": test._id})
+            const res = await serverReq('post', '/test-form', { "idTest": test._id })
+            // Promise.all([updateTest, res]).then((responses) => {
+                //     setTest(responses[1])
+                // })
+                setTest(res)
+                setLodingAdd(false)
+            } catch (error) {
+                console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
+            }
+    }
+
+    function change(e) {
+        if (e.target == e.currentTarget) {
+            setDropdown(!dropdown)
+        }
+    }
+
 
 
     return (
@@ -45,8 +71,72 @@ export default function TestForm() {
             {
                 !test ? <Loding text="טוען מבחן..." /> :
                 <TestFormContext.Provider value={[test, setTest]}>
-                    <PublishPopupContext.Provider value={[publishPopup, setPublishPopup]}>
-                        <Publish/>
+                <main className={Style.mainContainer}>
+                    <h1 className={`${Style.title} ${Style.mobile}`}>טופס ליצירת מבחן</h1>
+
+                    <div className={Style.iconsGroupWarp}>
+                        <ul className={`${Style.iconsGroup}`}>
+                            <li className={Style.icon} ><i className="fa fa-share-alt"></i></li>
+                            <li className={Style.icon}><i className="fas fa-chart-pie"></i></li>
+                            <li className={Style.icon}><Link to={`/test/${test._id}`}><i className="far fa-eye"></i></Link></li>
+                            <li className={`${Style.icon}`} ><i className={`fas fa-cog ${Style.dropdown}`}  onClick={(e) => change(e)}>{dropdown && <TestSetting />}</i></li>
+                        </ul>
+                    </div>
+
+                    <InputForm
+                        type="text"
+                        propartype="name"
+                        text="שם מבחן"
+                    />
+
+                    <InputForm
+                        type="text"
+                        propartype="title"
+                        text="כותרת מבחן"
+                    />
+
+                    <InputForm
+                        type="text"
+                        propartype="description"
+                        text="תיאור המבחן (הסבר קצר)"
+                    />
+
+                    {
+                        test.questions.map((question, index) => {
+                            return <QuestionForm question={question} index={index} key={question._id} />
+                        })
+                    }
+
+                    {
+                    lodingAdd && 
+                    <div className={Style.ldsRing}><div></div><div></div><div></div><div></div></div> 
+                    }  
+                    {
+                        <Icon 
+                        backgroundColor="#037E8B"
+                        color="#F3F2DC"
+                        fontSize="16px"
+                        icon="fas fa-plus"
+                        text="הוספת שאלה"
+                        margin="10px auto"
+                        style={{borderRadius: "10px", width: "150px", padding: "5px 0 5px 0",
+                        display: "flex", justifyContent: "space-around", cursor: "pointer"
+                    }}
+                        onClick={addQuestion}
+                        />
+                    }   
+
+
+                </main>
+
+
+
+
+
+
+
+                    {/* <PublishPopupContext.Provider value={[publishPopup, setPublishPopup]}>
+                    <Publish/>
                     <div className={Style.testFormContainer}>
                         <div className={Style.headerTestForm}>
                             <div className={Style.titelFormContainer}>
@@ -79,7 +169,7 @@ export default function TestForm() {
                         </div>
                         
                     </div>
-                    </PublishPopupContext.Provider>
+                    </PublishPopupContext.Provider> */}
                 </TestFormContext.Provider>
             }
 

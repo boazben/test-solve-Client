@@ -36,7 +36,7 @@ table {
     cursor: pointer;
   }
 
-  .web {
+  .webTable {
     display: none;
   }
 
@@ -50,7 +50,7 @@ table {
   }
 
   @media only screen and (min-width: 768px) {
-    .web {
+    .webTable {
       display: table-cell;
     }
 
