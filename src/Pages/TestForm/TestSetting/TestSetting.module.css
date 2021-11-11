@@ -12,7 +12,7 @@
     font-size: 28px;
     padding-bottom: 9px;
     cursor: pointer;
-    z-index: 5;
+    /* z-index: 5; */
  }
  
  .open {
@@ -32,6 +32,8 @@
     padding: 10px;
  }
 
+ 
+
 .dropdownItem {
     background-color: #F9F9EB;
     border-radius: 10px;
@@ -43,5 +45,13 @@
     width: 90%;
     height: 27px;
     
+    
 
+}
+
+@media only screen and (min-width: 768px){
+   .dropdownContainer {
+      left: 0;
+   }
+   
 }

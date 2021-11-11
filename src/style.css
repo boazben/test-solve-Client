@@ -98,7 +98,9 @@ a {
 }
 
 
-
+.pointer {
+    cursor: pointer;
+}
 
 
 

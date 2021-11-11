@@ -175,7 +175,7 @@ export default function MenuTestTimerForm() {
  
     return (
         <div className={Style.container}>
-        <i className={`far fa-clock ${Style.clock}`}></i>
+        <i className={`fas fa-hourglass-half ${Style.clock}`}></i>
         <div className={Style.timeContainer}>
             {
                 seconds_state === 'text' ? 

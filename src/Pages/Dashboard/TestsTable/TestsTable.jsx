@@ -10,11 +10,11 @@ export const DeleteTest = createContext()
 export default function TestsTable() {
   const table = useRef(null)
   const [tableState, setTableState] = useState([])
+  const [showInfo, setShowInfo] = useState(false)
   const [sort, setSort] = useState({
     name: "null",
     downToUp: true
   })
-  const [showInfo, setShowInfo] = useState(false)
   
  
 

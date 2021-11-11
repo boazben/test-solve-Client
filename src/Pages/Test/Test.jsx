@@ -53,7 +53,6 @@ export default function Test() {
         try {
             // console.log(`The id Test: ${testId}`);
             const res = await serverReq('post', '/get_test', {id: testId});
-            console.log(res);
             if (!res.test) creator.current = true
             setObj(res)
         } catch (error) {
@@ -87,22 +86,24 @@ export default function Test() {
             <SolvedTest /> :
             <div className={Style.testInfoWram} >
                 {
-                    creator && 
+                    creator.current && 
                     <div className={Style.iconsGroupWarp}>
+                        <Link to={`/test-form/${obj._id}`} >
                         <ul className={`${Style.iconsGroup}`}>
                             <li className={Style.icon}><i className="fa fa-share-alt"></i></li>
                             <li className={Style.icon}><i className="fas fa-chart-pie"></i></li>
-                            <li className={Style.icon}><Link to={`/test-form/${obj._id}`}><i className="fas fa-pencil-alt"></i></Link></li>
+                            <li ><i className="fas fa-pencil-alt"></i></li>
                             <li className={Style.icon}><i className="fas fa-cog"></i></li>
                         </ul>
+                        </Link>
                     </div>
                 }
                     <div className={Style.info} ref={info}>< TestInfo /></div>
                     {
-                        creator ?
+                        creator.current ?
                         <div className={Style.titleContainer}>
-                            <h2>{obj.title || obj.name || `המבחן של ${obj.creator.name.first} ${obj.creator.name.last}`}</h2>
-                            <h3>{obj.description || "בהצלחה במבחן"}</h3>
+                            <h2>{obj?.title || obj?.name || `המבחן של ${obj?.creator?.name?.first} ${obj?.creator?.name?.last}`}</h2>
+                            <h3>{obj?.description || "בהצלחה במבחן"}</h3>
                         </div>
                         :
                         <div className={Style.titleContainer}>

@@ -17,7 +17,8 @@ mainContainer {
     padding: 10px 0 10px 0;
     display: flex;
     align-items: center;
-    z-index: 3;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .iconsGroup{
@@ -28,6 +29,15 @@ mainContainer {
     margin: 10px auto;
    
     cursor: pointer;
+}
+
+.icon {
+  transition: 300ms;
+  z-index: 1;
+}
+
+.icon:hover {
+  color: #A5A5A5
 }
 
 .dropdown {

@@ -13,6 +13,7 @@ import Popup from '../../Components/Popup/Popup'
 import InputForm from './InputForm/InputForm'
 import Icon from '../../Components/Icon/Icon'
 import TestSetting from './TestSetting/TestSetting'
+import TestData from './TestData/TestData'
 
 export const TestFormContext = createContext()
 export const PublishPopupContext = createContext()
@@ -23,8 +24,8 @@ export default function TestForm() {
     const { testId } = useParams()
     const [lodingAdd, setLodingAdd] = useState(false)
     const [dropdown, setDropdown] = useState(false)
-    // const [popup, setPopup] = useState(false)
-    // const [publishPopup, setPublishPopup] = useState(false)
+    const [publishPopup, setPublishPopup] = useState(false)
+    const [testData, setTestData] = useState(false)
     
     useEffect(() => {
         getTest()
@@ -56,9 +57,9 @@ export default function TestForm() {
             }
     }
 
-    function change(e) {
-        if (e.target == e.currentTarget) {
-            setDropdown(!dropdown)
+    function setState(e, state, setState) {
+        if (e.target === e.currentTarget) {
+            setState(!state)
         }
     }
 
@@ -76,10 +77,10 @@ export default function TestForm() {
 
                     <div className={Style.iconsGroupWarp}>
                         <ul className={`${Style.iconsGroup}`}>
-                            <li className={Style.icon} ><i className="fa fa-share-alt"></i></li>
-                            <li className={Style.icon}><i className="fas fa-chart-pie"></i></li>
-                            <li className={Style.icon}><Link to={`/test/${test._id}`}><i className="far fa-eye"></i></Link></li>
-                            <li className={`${Style.icon}`} ><i className={`fas fa-cog ${Style.dropdown}`}  onClick={(e) => change(e)}>{dropdown && <TestSetting />}</i></li>
+                            <li className={Style.icon} style={publishPopup ? {zIndex: '5'} : {zIndex: '0'}}><i className="fa fa-share-alt" onClick={(e) => setState(e, publishPopup, setPublishPopup)}>{publishPopup && <Publish state={[publishPopup, setPublishPopup]}/>}</i></li>
+                            <li className={Style.icon}  style={testData ? {zIndex: '5'} : {zIndex: '0'}}><i className="fas fa-chart-pie" onClick={(e) => setState(e, testData, setTestData)}>{testData && <TestData state={[testData, setTestData]}/>}</i></li>
+                            <li><Link className={Style.icon}  to={`/test/${test._id}`}><i className="far fa-eye"></i></Link></li>
+                            <li className={`${Style.icon}`} style={{zIndex: '0'}}><i className={`fas fa-cog ${Style.dropdown}`}  onClick={(e) =>  setState(e, dropdown, setDropdown)}>{dropdown && <TestSetting />}</i></li>
                         </ul>
                     </div>
 
@@ -128,48 +129,6 @@ export default function TestForm() {
 
 
                 </main>
-
-
-
-
-
-
-
-                    {/* <PublishPopupContext.Provider value={[publishPopup, setPublishPopup]}>
-                    <Publish/>
-                    <div className={Style.testFormContainer}>
-                        <div className={Style.headerTestForm}>
-                            <div className={Style.titelFormContainer}>
-                                {test.status.includes('Started') || test.status.includes('Closed') ? 
-                                <div>
-                                    <h1 className={Style.message}>
-                                        {`סטטוס המבחן: "${test.status_he}".`}
-                                        <br />
-                                         {`לא ניתן לערוך חלקים במבחן.`}
-                                    </h1>
-                                    <button className={Style.btn} onClick={() =>setPopup(true)}>למידע נוסף</button>
-                                    {popup ? < Popup state={[popup, setPopup]} title="עריכת מבחן שהופץ" message={"לאחר פרסום המבחן, ניתן לערוך את המבחן רק במידה ולא התחילו להשיב על המבחן. מהרגע שהמשיב הראשון התחיל את המבחן, לא ניתן למחוק שאלות, להוסיף, או לערוך. ניתן לשנות רק כותרות, תיאורים והסברים. בהצלחה!"} btnText={"אוקיי, הבנתי"} /> : null}
-                                </div>
-                                : null
-                                }
-                                <TitelForm />
-                                <DescriptionForm />
-                                <AddQuestion />
-                            </div>
-                            <div className={Style.menuTestForm}>
-                                <MenuTestForm />
-                            </div>
-                        </div>
-                        <div className={Style.QuestionsFormContainer}>
-                            {
-                                test?.questions?.map((question, index) => {
-                                    return <QuestionForm key={question._id} idQuestion={question._id} index={index}/>
-                                })   
-                            }
-                        </div>
-                        
-                    </div>
-                    </PublishPopupContext.Provider> */}
                 </TestFormContext.Provider>
             }
 

@@ -1,0 +1,131 @@
+.background {
+    height:100vh;
+    width: 100vw;
+    background-color: hsl(0deg 0% 0% / 10%);
+    position: fixed;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.container {
+    width: 80vw;
+    color: #262B2E;
+    box-sizing: content-box;
+    position: fixed;
+    height: max-content;
+    background-color: #F3F2DC;
+    border: 5px solid #262B2E;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: auto;
+    /* padding: 15px 50px 15px 50px; */
+    padding: 15px;
+    /* z-index: 30; */
+}
+
+.header {
+    display: flex;
+}
+
+.exit{
+    position: absolute;
+    top: -28px;
+    right: -28px;
+    height: 25px;
+    width: 25px;
+    border: 2px solid #E57462;
+    background-color: #E57462;
+    border-radius: 50%;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+    color: #F3F2DC;
+    margin-top: 15px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.exit:hover {
+ background-color: #F3F2DC;
+ color: #E57462;
+}
+
+
+
+.title {
+    font-size: 28px;
+    margin: 0 auto 10px auto; 
+    
+
+}
+
+
+.main {
+    width: 90%;
+    max-height: 70vh;
+    overflow: auto;
+    margin: 15px auto;
+    background-color: #025D66;
+    border-radius: 15px;
+    color: #F3F2DC;
+    padding: 8px;
+}
+
+.examineesTitle {
+    display: flex;
+    align-items: center;
+}
+
+.arrow {
+    margin-right: 10px;
+    transition: 300px;
+}
+
+.table {
+    overflow: auto;
+    /* max-width: 90%; */
+    max-height: 400px;
+}
+
+ 
+
+/* width */
+.scroll::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    right: 10px;
+    cursor: pointer;
+}
+  
+  /* Track */
+  .scroll::-webkit-scrollbar-track {
+    background: #262b2e18; 
+    border-radius: 2px;
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+    /* border: 1px solid #F3F2DC; */
+    /* background: #E57462;  */
+    background: #262B2E; 
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 300ms;
+  }
+  
+  /* Handle on hover */
+  .scroll::-webkit-scrollbar-thumb:hover {
+    background: #E57462; 
+  }
+
+
+
+
+@media only screen and (min-width: 768px){
+   
+     
+}

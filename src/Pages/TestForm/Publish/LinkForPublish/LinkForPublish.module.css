@@ -1,0 +1,44 @@
+.container {
+    position: relative;
+    width: 90%;
+    background-color: #F3F2DC;
+    border-radius: 5px;
+    padding: 5px;
+    
+    color: #262B2E;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.link {
+    overflow: auto;
+    padding: 5px;
+    transition: 300ms;
+
+}
+
+/* width */
+.link::-webkit-scrollbar {
+    height: 3px;
+    margin: 0;
+  }
+  
+  /* Track */
+  .link::-webkit-scrollbar-track {
+    background: #262b2e18; 
+    border-radius: 2px;
+  }
+   
+  /* Handle */
+  .link::-webkit-scrollbar-thumb {
+    /* background: #E57462;  */
+    background: #262B2E; 
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  
+  /* Handle on hover */
+  .link::-webkit-scrollbar-thumb:hover {
+    background: #E57462; 
+  }
+

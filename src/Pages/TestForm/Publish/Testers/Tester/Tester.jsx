@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { serverReq } from '../../../../../functions'
-import TesCSS from './Tester.module.css'
+import Style from './Tester.module.css'
 
 export default function Tester({user}) {
-    const [profile, setProfile] = useState(user)
-    useEffect(() => {
-        getProfilers()
-    }, [])
-
-    async function getProfilers() {
-        const res = await serverReq('post', '/get_profile', {"email": user.user_responds})
-        setProfile(res)
-    }
-
-    
-   
-
     return (
-        <div className={TesCSS.container}>
-            <div className={TesCSS.ProfilersContainer}>
-                <div className={TesCSS.TesterImg} style={{ backgroundImage: `url(${profile.profilePicture || 'https://hook.finance/sites/default/files/user.png'})` }}></div>
-                <span>{profile.fullName || "התלמיד לא רשום לאתר"}</span>
+        <div className={Style.container}>
+            <div className={Style.ProfilersContainer}>
+                {
+                    user.user_responds?.profilePicture ?
+                    <div className={Style.TesterImg} style={{ backgroundImage: `url(${user?.user_responds?.profilePicture || 'https://hook.finance/sites/default/files/user.png'})` }}></div>
+                    :
+                    <div className={Style.TesterIcon}><i className="fas fa-user"></i></div>
+                }
+                
+                <span className={Style.name}>{user.user_responds?.name ? `${user.user_responds.name.first} ${user.user_responds.name.last}` : "משתמש לא רשום"}</span>
             </div>
-            <span>{user.user_responds || "email@gmail.com"}</span>
+            <span className={Style.email}>{user.user_responds?.email || user.user_responds}</span>
         </div>
     )
 }

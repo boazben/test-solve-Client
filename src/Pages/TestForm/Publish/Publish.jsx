@@ -1,14 +1,15 @@
 import React, { createContext, useContext, useState } from 'react'
 import { PublishPopupContext } from '../TestForm'
 import AddTester from './AddTester/AddTester'
-import PubCSS from './Publish.module.css'
+import LinkForPublish from './LinkForPublish/LinkForPublish'
+import Style from './Publish.module.css'
 import Testers from './Testers/Testers'
 
 export const ErrorContext = createContext()
 export const TestersContext = createContext()
 
-export default function Publish() {
-    const [publishPopup, setPublishPopup] = useContext(PublishPopupContext)
+export default function Publish({state}) {
+    const [publishPopup, setPublishPopup] = state
     const [errorMessage, setErrorMessage] = useState("")
     const [testers, setTesters] = useState([])
 
@@ -25,20 +26,19 @@ export default function Publish() {
         <>
         {
             !publishPopup? null :
-            <div className={PubCSS.backgroundPopup} onClick={(e) => closed(e)}>
-                <div className={PubCSS.puplishDiv}>
-                    <div className={PubCSS.headerPuplishPopup}>
-                        <div className={PubCSS.exitPuplishPopup} onClick={exit}><i className={"fas fa-times"}></i></div>                     
-                        <h2 className={PubCSS.titelPuplishPopup}>פרסום מבחן</h2>
+            <div className={Style.backgroundPopup} onClick={(e) => closed(e)}>
+                <div className={Style.puplishDiv}>
+                    <div className={Style.headerPuplishPopup}>
+                        <div className={Style.exit} onClick={exit}><i className={"fas fa-times"}></i></div>                     
+                        <h2 className={Style.title}>פרסום מבחן</h2>
                     </div>
                     <TestersContext.Provider value={ [testers, setTesters]} >
-                        <ErrorContext.Provider value={[errorMessage, setErrorMessage]} >
-                                <AddTester />
-                        </ErrorContext.Provider>
-                        {errorMessage ? <div className={PubCSS.errorMessage}>{errorMessage}</div> : null}
-                        <h3 className={PubCSS.subheading}>נבחנים</h3>
+                        <AddTester errorState={[errorMessage, setErrorMessage]} />
+                        {errorMessage && <div className={Style.errorMessage}>{errorMessage}</div>}
                         <Testers />
                     </TestersContext.Provider>
+                    <h3>קישור להפצת המבחן</h3>
+                    <LinkForPublish />
                 </div>
             </div>
         }

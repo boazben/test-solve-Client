@@ -63,7 +63,7 @@ export default function UserHeader() {
                             <>
                             <div className={Style.screen}>
                             </div>
-                                <div className={Style.dropdownOpen}>
+                                <div className={Style.dropdownOpen} style={open ? {zIndex: '5'} : {zIndex: '1'}}>
                                     <div onClick={() => newTest()}>
                                         <DropdownItem icon="fas fa-plus">יצירת מבחן חדש</DropdownItem>
                                     </div>

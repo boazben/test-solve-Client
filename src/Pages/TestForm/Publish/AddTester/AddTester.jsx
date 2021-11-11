@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { serverReq } from '../../../../functions'
 import { TestFormContext } from '../../TestForm'
 import { ErrorContext, RerenderContext, TestersContext } from '../Publish'
-import './AddTester.css'
+import Style from'./AddTester.module.css'
 
-export default function AddTester() {
+export default function AddTester({errorState}) {
     
-    const [errorMessage, setErrorMessage] = useContext(ErrorContext)
+    const [errorMessage, setErrorMessage] = errorState
     const [test, setTest]  = useContext(TestFormContext)
     const [testers, setTesters] = useContext(TestersContext)
     async function add(e) {
@@ -35,11 +35,11 @@ export default function AddTester() {
 
     return (
         <form onSubmit={e => add(e)}>
-            <div className="addTesterContainer" >
-                <input type="submit" value="+" className="addTesterSubmit"/>
-                <input name="email" type="email" placeholder="email@email.com" className="addTesterInput" />
+            <div className={Style.Container} >  
+                <input type="submit" value="+" className={Style.Submit}/>
+                <input name="email" type="email" placeholder="אימייל" className={Style.Input} />
+                <i className={`fas fa-envelope ${Style.icon}`}></i>
             </div>
-            <label htmlFor="email" >הוסף נבחן</label>
         </form>
     )
 }
