@@ -23,21 +23,6 @@ export default function QuestionForm({question, index}) {
     const [lodingAns, setLodingAns] = useState(false)
     const [lodingQues, setLodingQues] = useState(false)
 
-    // useEffect(()=> {
-    //     getQuestion()
-    // }, [])
-
-    // async function getQuestion() {
-    //     try {
-           
-    //         const res = await serverReq('post', '/get_questin', { "idQuestion": idQuestion})
-    //         setQuestion(res)
-    //     } catch (error) {
-           
-    //         console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
-    //     }
-    // }
-
     async function addAnswer() {
                 setLodingAns(true)
             try {
@@ -76,17 +61,19 @@ export default function QuestionForm({question, index}) {
             <QuestionContext.Provider value={question}>
 
                 <div className={Style.deleteQuestion}>
-                    <Icon 
-                            icon="fas fa-trash"
-                            backgroundColor="#E57462"
-                            color="#F3F2DC" 
-                            size="30px" 
-                            fontSize="15px" 
-                            
-                            onClick={deleteQuestion}
-                             
-                            
-                    />
+
+                    {
+                       !test.status.includes("Started") && !(test.status.includes("Closed")) && 
+                       <Icon 
+                               icon="fas fa-trash"
+                               backgroundColor="#E57462"
+                               color="#F3F2DC" 
+                               size="30px" 
+                               fontSize="15px" 
+                               
+                               onClick={deleteQuestion}
+                        />
+                    }
                 </div>
 
 
@@ -97,33 +84,49 @@ export default function QuestionForm({question, index}) {
 
                 <h2 className={Style.title}>שאלה מספר {index + 1}</h2>
 
-                <InputQuesForm
-                        type="text"
-                        propartype="title"
-                        text="כותרת השאלה"
-                        
-                 />
-
-                <InputQuesForm
-                        type="text"
-                        propartype="description"
-                        text="תיאור השאלה"
-                        
-                 />
-
-                <div className={Style.scoreContainer}>
-
-                    <div className={Style.score}> ניקוד שאלה:</div>
-
+                {
+                    (test.status.includes("Closed")) ?
+                    <h3 className={Style.right}>{question.title}</h3>
+                    : 
                     <InputQuesForm
-                            type="number"
-                            propartype="score"
-                            text="ניקוד"
-                            style={{width: "100%", marginLeft: "-5px"}}
-                            max="100"
-                            min="0"
-                    />
+                            type="text"
+                            propartype="title"
+                            text="כותרת השאלה"
+                            
+                     />
+
+                }
+                {
+                    (test.status.includes("Closed")) ?
+                    <h3 className={Style.right}>{question.description}</h3>
+                    : 
+                    <InputQuesForm
+                            type="text"
+                            propartype="description"
+                            text="תיאור השאלה" 
+                     />
+                }
+
+
+            {
+            test.status.includes("Started") || (test.status.includes("Closed")) ?
+                <div className={Style.scoreStatus}>
+                <div className={`${Style.score} ${Style.scoreTextStatus}`}> ניקוד שאלה:</div>
+                <h3 className={Style.status}>{question.score} נק'</h3>
                 </div>
+                :
+                <div className={Style.scoreContainer}>
+                        <div className={Style.score}> ניקוד שאלה:</div>
+                        <InputQuesForm
+                                type="number"
+                                propartype="score"
+                                text="ניקוד"
+                                style={{width: "100%", marginLeft: "-5px"}}
+                                max="100"
+                                min="0"
+                        />
+                </div>
+            }
 
                 {
                     question.answers.map((answer, index) => {

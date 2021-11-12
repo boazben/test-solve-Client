@@ -1,10 +1,11 @@
 import React, { useState, useRef, useContext } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import { ExamineesContext } from '../../TestData'
 import Style from './Row.module.css'
 
 export default function Row({user}) {
     const [showInfo, setShowInfo] = useState(false)
+    const {testId} = useParams()
     const color = useRef({
         'Not Open': Style.NotOpen,
         'In Doing': Style.InDoing,
@@ -36,7 +37,7 @@ export default function Row({user}) {
             <td className="webTable"> {user.grade}</td>
             <td className="webTable"> {user.submissionDate ? (new Date(user.submissionDate)).toLocaleDateString('en-GB') : "ללא תאריך הגשה"}</td>
             <td className="webTable"> {user?.user_responds?.email || user.user_responds}</td>
-            <td className="webTable"><Link><i className="far fa-eye"></i></Link></td>
+            <td className="webTable"><Link to={`/test/${testId}/${user.user_responds._id}`}><i className="far fa-eye"></i></Link></td>
             {/* <td className="webTable pointer" onClick={() => setPopup(true)}><i className="fas fa-trash"></i> למחוק</td> */}
         </tr>
 
@@ -65,29 +66,9 @@ export default function Row({user}) {
           <tr className={Style.dropdown}>
               <td className={Style.center}><i className="far fa-eye"></i></td>
               <td>לצפייה</td>
-              <td><Link>פתרון המבחן</Link></td>
+              <td><Link to={`/test/${testId}/${user.user_responds._id}`}>פתרון המבחן</Link></td>
               
           </tr>
-          {/* <tr className={Style.dropdown}>
-                <td className={Style.center}><i className="fas fa-link"></i></td>
-                <td>קישור</td>
-                <td>
-                  {
-                      user.status.includes("Edited") || user.status.includes("Distributed") ?
-                      <Link to={`/test-form/${test._id}`} className={`${color.current[user.status]}`}><i className="fas fa-pencil-alt"></i> לערוך</Link>
-                      : 
-                      <Link to={`/test-form/${test._id}`} className={`${color.current[user.status]}`}><i className="far fa-eye"></i> לצפייה</Link>
-                  }
-                </td>
-              
-          </tr>
-
-          <tr className={Style.dropdown}>
-              <td className={Style.center}><i className="fas fa-exclamation-triangle"></i></td>
-              <td>מחיקת מבחן</td>
-              <td className="pointer" onClick={() => setPopup(true)}><i className="fas fa-trash"></i> למחוק</td>
-              
-          </tr> */}
           <tr>
               <td></td>
           </tr>

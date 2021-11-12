@@ -1,3 +1,21 @@
+.lockContainer {
+    color: #657179;
+    margin-top: 40px;
+}
+
+.lockIcon {
+    color: #657179;
+    font-size: 80px;
+}
+
+.lockContainer h2{
+    color: #262B2E;
+}
+.lockContainer a {
+    color: #E57462;
+}
+
+
 .testInfoWram {
     width: 70vw;
     margin: auto;
@@ -25,7 +43,7 @@
 
 
 .iconsGroupWarp {
-    width: 80vw;
+    /* width: 80vw; */
     margin: auto;
     background-color: #F3F2DC;
     height: 20px;
@@ -35,6 +53,10 @@
     display: flex;
     align-items: center;
     /* z-index: 3; */
+}
+
+.link {
+    margin: auto;
 }
 
 .iconsGroup{

@@ -79,29 +79,41 @@ export default function AnswersForm({answer, index, idQuestion}) {
 
     
     return (
-        <div className={Style.container}>
-            <form ref={form} onSubmit={e => ifCorrectAnswer(e)} >
-                <Checkbox 
-                id={answer._id + "check"} 
-                defaultChecked={answer.correct} 
-                onClick={() => form.current.requestSubmit()} 
-                inputStyle={{position: "absulut", right: "-30px"}}
-                >
-                    <span className={Style.number}>{counter[index]}.</span> 
-                </Checkbox>
-            </form>
+        <div className={Style.container} style={(test.status.includes("Closed")) ? {justifyContent: "flex-start"} : null}>
+            {
+                test.status.includes("Started") || (test.status.includes("Closed")) ?
+                <div className={`${Style.answerSquare} ${answer.correct ? Style.after : null}`}></div>
+                :
+                <form ref={form} onSubmit={e => ifCorrectAnswer(e)} >
+                    <Checkbox 
+                    id={answer._id + "check"} 
+                    defaultChecked={answer.correct} 
+                    onClick={() => form.current.requestSubmit()} 
+                    inputStyle={{position: "absulut", right: "-30px"}}
+                    >
+                        <span className={Style.number}>{counter[index]}.</span> 
+                    </Checkbox>
+                </form>
+            }
+            {
+                (test.status.includes("Closed")) ? 
+                <h3 className={Style.textStatus}>{answer.text}</h3>
+                :
+                <InputAnsForm 
+                     type="text"
+                     propartype="text"
+                     text={`תשובה ${counter[index]}`}
+                     index={index}
+                     idQuestion={idQuestion}
+                     answer={answer}
+                     style={{width: "100%", marginLeft: "-5px"}}
+                />
+
+            }
+
+            {
             
-
-            <InputAnsForm 
-                 type="text"
-                 propartype="text"
-                 text={`תשובה ${counter[index]}`}
-                 index={index}
-                 idQuestion={idQuestion}
-                 answer={answer}
-                 style={{width: "100%", marginLeft: "-5px"}}
-            />
-
+            !test.status.includes("Started") && !(test.status.includes("Closed")) &&
             <div className={Style.iconsContainer}>
                 <Icon
                 style={{cursor: "pointer"}} 
@@ -127,10 +139,12 @@ export default function AnswersForm({answer, index, idQuestion}) {
                 }
 
                 {
-                   loding && 
+                    loding && 
                    <div className={Style.ldsRing}><div></div><div></div><div></div><div></div></div> 
                 }
+            
              </div>
+            }
         </div>
     )
 }

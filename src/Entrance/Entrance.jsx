@@ -6,7 +6,7 @@ import Register from './Register/Register'
 import Loding from '../Components/Loding/Loding'
 import { serverReq } from '../functions'
 import { LoginState } from '../App/App'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router-dom'
 
 export const UserContext = createContext()
 
@@ -15,10 +15,11 @@ export default function Entrance({ children }) {
     const [registerState, setRegisterState] = useState(true)
     const [login, setLogin] = useContext(LoginState)
     const history = useHistory()
+    const location = useLocation()
 
     useEffect(() => {
-        let isMounted = true; 
-        loginWithToken()
+            loginWithToken()
+            
       }, [])
 
       async function loginWithToken() {
@@ -27,7 +28,7 @@ export default function Entrance({ children }) {
                 const response =   await serverReq('post', '/locaSLogin')
                 setUser(response)
                 setLogin(true)
-               
+                history.push(`${location.pathname}`)
             }
             else{
                 setUser()
@@ -52,7 +53,9 @@ export default function Entrance({ children }) {
             {user ? user === 'gust' ? <Loding text="ברוך הבא!"/> : children :
                 <div className={Style.container}>
                     <div className={Style.form}>
-                    {registerState ? <Register toConnect={[registerState, setRegisterState]} /> : <Login toRegister={[registerState, setRegisterState]}/>}
+                    {
+                        registerState ? <Register toConnect={[registerState, setRegisterState]} /> : <Login toRegister={[registerState, setRegisterState]}/>
+                    }
                     </div>
                 </div>
             }   

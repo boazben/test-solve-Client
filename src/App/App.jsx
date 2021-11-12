@@ -73,10 +73,12 @@ function App() {
             <Route path="/my-created" component={Dashboard} />
             <Route path="/test-form/:testId" component={TestForm} />
             <Route path="/my-tests" component={MyTests} />
-            <Route path="/test/:testId" component={Test} />
+            <Route path="/test/:testId" component={Test} exact/>
+            <Route path="/test/:testId/:userId" component={Test} />
             <Route path="/about" component={About} />
             <Route path="/website-information" component={About} />
             <Route path="/test-preview/:testId" component={TestPreview} />
+            <Route path="/register" component={Homepage} />
           </Switch>
           <Footer />
       </Entrance>

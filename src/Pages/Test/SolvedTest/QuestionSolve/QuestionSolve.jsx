@@ -66,7 +66,7 @@ export default function QuestionSolve({responses, question, index}) {
                             <div className={`${Style.indication} ${answer.correct ? Style.correctInd :  responses ?  responses["inp" + answer._id] ? Style.wrongInd : null : null }`}>{answer.correct ? <i className="fas fa-check"></i> : responses ?  responses["inp" + answer._id] ? <i className="fas fa-times"></i> : null : null}</div>
                             <div className={`${Style.answerSquare} ${!responses ? null : responses["inp" + answer._id] ? Style.after : null}`}></div>
                             <div key={index} className={`${Style.textAnswerContainer} ${answerStyle.current[`${ifCorrect(answer, responses)}`]}`}>
-                                {`${counter[index]}. ${answer.text} `}
+                                {`${counter[index]}. ${answer.text || ''} `}
                             </div>
                         </div>
                     )

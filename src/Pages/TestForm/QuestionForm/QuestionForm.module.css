@@ -1,15 +1,25 @@
 .title {
-    margin: -10px;
+    margin: -10px auto;
     font-size: 20px;
     font-weight: normal;
     width: 100%;
 }
 
+.scoreStatus {
+  display: flex;
+  text-align: start;
+  align-items: center;
+  margin: auto;
+  margin: -10px auto 0 auto;
+  width: 70%;
+}
+
+
 
 .scoreContainer {
-    margin: -10px auto 0 auto;
-    display: flex;
-    width: 70%;
+  margin: -10px auto 0 auto;
+  display: flex;
+  width: 70%;
     justify-content: space-between;
     align-items: center;
 }
@@ -20,6 +30,9 @@
     font-size: 20px;
 }
 
+.scoreTextStatus {
+  width: 120px;
+}
 .ldsRing {
     display: inline-block;
     position: relative;
@@ -81,6 +94,11 @@
       justify-content: flex-start;
       margin: 50px 5vw -28px 0;
 
+    }
+
+    .right {
+      text-align: start;
+      margin-right: 10vw;
     }
 
   }

@@ -8,6 +8,12 @@ mainContainer {
     font-size: 22px;
 }
 
+.status {
+  color: #C06635;
+  max-width: 70vw;
+  margin: 5px auto 10px auto;
+}
+
 .iconsGroupWarp {
     width: 100vw;
     background-color: #F3F2DC;

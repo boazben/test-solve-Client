@@ -44,23 +44,17 @@ export default function MenuTestDeadlineForm() {
         }
     }
 
-    function toPreviwDate(date) {
-        const deadline = new Date(date)
-        // console.log(deadline);
-        return deadline.toLocaleDateString('he-IL', {timeZone:'Asia/Jerusalem'})//.replace(/\D/g,'/')
-    }
  
     return (
         <form ref={form} className={Style.form} onSubmit={e  => submit(e)}>
             <input className={`${Style.input} ${test.deadline ? Style.filled : null}`}
             type="date"
             name="input" 
-            
             data-date-format="DD MMMM YYYY"
             defaultValue={test.deadline ? new Date(test.deadline).toISOString().split('T')[0] : "dd/mm/yyyy"}
             onFocus={e => e.target.select()} 
             onBlur={() => form.current.requestSubmit()}
-            
+            // onClick={(e) }
              />
         </form>
     //     <div>דד-ליין: 

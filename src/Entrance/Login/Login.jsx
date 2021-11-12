@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {Link, useHistory } from 'react-router-dom'
+import {Link, useHistory, useLocation } from 'react-router-dom'
 import { LoginState } from '../../App/App'
 import { serverReq } from '../../functions'
 import { UserContext } from '../Entrance'
@@ -15,6 +15,7 @@ export default function Login({toRegister}) {
     const [login, setLogin] = useContext(LoginState)
     const [registerState, setRegisterState] = toRegister
     const history = useHistory()
+    const location = useLocation()
 
 
     async function toLogin(e) {
@@ -33,7 +34,7 @@ export default function Login({toRegister}) {
             if (values.stayConnected) localStorage.token = res.token
             setUser(res)
             setLogin(true)
-            history.push('/')
+            history.push(`${location.pathname}`)
             
         } catch (error) {
             setError(error.response?.data?.error || error.message)

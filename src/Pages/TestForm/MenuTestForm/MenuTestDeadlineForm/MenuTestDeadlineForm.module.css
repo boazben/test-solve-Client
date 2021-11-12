@@ -23,7 +23,8 @@
 .input::-webkit-calendar-picker-indicator {
     color: hsl(0deg 0% 65%);
     background: none;   
-    /* z-index: 1; */
+    z-index: 1;
+    cursor: pointer;
   }
 
   

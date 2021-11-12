@@ -13,14 +13,20 @@ export const SolverTesContext = createContext()
 export const SubmitContext = createContext()
 
 export default function Test() {
-    const { testId } = useParams()
+    const { testId, userId } = useParams()
     const [obj, setObj] = useState()
     const [toShow, setToShow] =useState(false)
+    const [toShere, setToShere] = useState(false)
     const info = useRef(null)
     const creator = useRef(null)
+    const toConnect = useRef({
+        email: null,
+        name: null
+    })
 
     useEffect(() => {
         window.addEventListener("scroll", listenToScroll)
+        console.log(userId);
         getTest()
         return () => {
             window.removeEventListener("scroll", listenToScroll);
@@ -52,10 +58,17 @@ export default function Test() {
     async function getTest() {
         try {
             // console.log(`The id Test: ${testId}`);
-            const res = await serverReq('post', '/get_test', {id: testId});
+            const res = await serverReq('post', '/get_test', {idTest: testId});
             if (!res.test) creator.current = true
             setObj(res)
         } catch (error) {
+            console.log(error.response.data);
+            if (error.response?.data?.error.includes("The test accessible to order holders only")) {
+                const connsectDetails = error.response.data.error.split("\n")
+                toConnect.current.email = connsectDetails[1]
+                toConnect.current.name = connsectDetails[2]
+                setToShere(true)
+            }
             console.log(error.response?.data?.error || error.message || error);
         }
     }
@@ -73,6 +86,7 @@ export default function Test() {
             // console.log(res);
             setObj(res)
         } catch (error) {
+            
             console.log(error.response?.data?.error || error.message || error);
         }
 
@@ -81,23 +95,36 @@ export default function Test() {
     return (
         <SolverTesContext.Provider value={[obj, setObj]} >
         {
-            !obj ? <Loding text={"טוען מבחן..."}/> :
-            obj?.status?.includes("Done") || obj?.status?.includes("Closed") ?
-            <SolvedTest /> :
+            !obj ? toShere ?  
+            <div className={Style.lockContainer}>
+                <i className={`fas fa-user-lock ${Style.lockIcon}`}></i>
+                <h1>המבחן נעול למשתמשים לא מוזמנים</h1>
+                <h2>{`ליצירת קשר לשם בקשת הרשאה מ${toConnect.current.name}:`} <a href={`mailto:${toConnect.current.email}`}>{toConnect.current.email}</a></h2>
+               
+            </div>
+            :
+            <Loding text={"טוען מבחן..."}/> :
+            // creator.current && userId ?
+            // <SolvedTest creator={true}/>
+            // :
+            <>
+            {
+                creator.current && 
+                <div className={Style.iconsGroupWarp}>
+                    <Link className={Style.link} to={`/test-form/${testId}`} >
+                    <ul className={`${Style.iconsGroup}`}>
+                        <li className={Style.icon}><i className="fa fa-share-alt"></i></li>
+                        <li className={Style.icon}><i className="fas fa-chart-pie"></i></li>
+                        <li ><i className="fas fa-pencil-alt"></i></li>
+                        <li className={Style.icon}><i className="fas fa-cog"></i></li>
+                    </ul>
+                    </Link>
+                </div>
+            }
+            {
+            (creator.current && userId) || obj?.status?.includes("Done") || obj?.status?.includes("Closed") ?
+            <SolvedTest creator={creator.current && userId}/> :
             <div className={Style.testInfoWram} >
-                {
-                    creator.current && 
-                    <div className={Style.iconsGroupWarp}>
-                        <Link to={`/test-form/${obj._id}`} >
-                        <ul className={`${Style.iconsGroup}`}>
-                            <li className={Style.icon}><i className="fa fa-share-alt"></i></li>
-                            <li className={Style.icon}><i className="fas fa-chart-pie"></i></li>
-                            <li ><i className="fas fa-pencil-alt"></i></li>
-                            <li className={Style.icon}><i className="fas fa-cog"></i></li>
-                        </ul>
-                        </Link>
-                    </div>
-                }
                     <div className={Style.info} ref={info}>< TestInfo /></div>
                     {
                         creator.current ?
@@ -120,9 +147,9 @@ export default function Test() {
 
             </div>
             
-            
+                }   
+        </>
         }
         </SolverTesContext.Provider>
-        
     )
 }

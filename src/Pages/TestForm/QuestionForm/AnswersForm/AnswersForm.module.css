@@ -8,7 +8,9 @@
     z-index: 0;
 }
 
-
+.textStatus {
+  text-align: start;
+}
 
 .number {
     font-size: 20px;  
@@ -24,6 +26,31 @@
     flex-direction: column;
     align-items: center;
 
+}
+
+.answerSquare {
+  flex-shrink: 0;
+  -webkit-appearance:none;
+  display:inline-block;
+  width:10px;
+  height:10px;
+  padding:0px;
+  margin:0px;
+  margin-left:5px;
+  margin-top: 6px;
+  background:#F3F2DC;
+  border-radius:5px;
+  border:3px solid #025D66;
+  border: 3px solid #025D66;                                                
+  box-sizing:content-box;                                                   
+  line-height:18px;                                                         
+  vertical-align: sub;                                                      
+  position:relative;
+}
+
+.after{ 
+ background-color: #025D66;
+ 
 }
 
 

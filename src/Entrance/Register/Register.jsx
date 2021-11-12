@@ -1,6 +1,6 @@
 import axios from 'axios'
-import React, { useContext, useState } from 'react'
-import { useHistory } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { useHistory, useLocation } from 'react-router-dom';
 import { LoginState } from '../../App/App';
 import { serverReq } from '../../functions';
 import { UserContext } from '../Entrance';
@@ -15,7 +15,9 @@ export default function Register({toConnect}) {
     const [error, setError] = useState('')
     const [login, setLogin] = useContext(LoginState)
     const history = useHistory()
+    const location = useLocation()
     const [registerState, setRegisterState] = toConnect
+
 
     async function register(e) {
         try {
@@ -38,7 +40,7 @@ export default function Register({toConnect}) {
                 if (values.stayConnected) localStorage.token = res.token
                 setUser(res)
                 setLogin(true)
-                history.push('/')
+                history.push(`${location.pathname}`)
             } 
             else setSecssesRegister(true)
             

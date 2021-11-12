@@ -73,6 +73,13 @@ export default function TestForm() {
                 !test ? <Loding text="טוען מבחן..." /> :
                 <TestFormContext.Provider value={[test, setTest]}>
                 <main className={Style.mainContainer}>
+                    {
+                        (test.status.includes("Started") || (test.status.includes("Closed"))) && 
+                        <>
+                            <h2 className={`${Style.status}`}>{`סטטוס מבחן: "${test.status_he}".`} </h2>
+                            <h2 className={`${Style.status}`}>{`לא ניתן לערוך חלקים מסוימים במבחן.`} </h2>
+                        </>
+                    }
                     <h1 className={`${Style.title} ${Style.mobile}`}>טופס ליצירת מבחן</h1>
 
                     <div className={Style.iconsGroupWarp}>
@@ -80,27 +87,44 @@ export default function TestForm() {
                             <li className={Style.icon} style={publishPopup ? {zIndex: '5'} : {zIndex: '0'}}><i className="fa fa-share-alt" onClick={(e) => setState(e, publishPopup, setPublishPopup)}>{publishPopup && <Publish state={[publishPopup, setPublishPopup]}/>}</i></li>
                             <li className={Style.icon}  style={testData ? {zIndex: '5'} : {zIndex: '0'}}><i className="fas fa-chart-pie" onClick={(e) => setState(e, testData, setTestData)}>{testData && <TestData state={[testData, setTestData]}/>}</i></li>
                             <li><Link className={Style.icon}  to={`/test/${test._id}`}><i className="far fa-eye"></i></Link></li>
-                            <li className={`${Style.icon}`} style={{zIndex: '0'}}><i className={`fas fa-cog ${Style.dropdown}`}  onClick={(e) =>  setState(e, dropdown, setDropdown)}>{dropdown && <TestSetting />}</i></li>
+                            <li className={`${Style.icon}`} style={dropdown ? {zIndex: '4'} : {zIndex: '0'}}><i className={`fas fa-cog ${Style.dropdown}`}  onClick={(e) =>  setState(e, dropdown, setDropdown)}>{dropdown && <TestSetting />}</i></li>
                         </ul>
                     </div>
 
-                    <InputForm
-                        type="text"
-                        propartype="name"
-                        text="שם מבחן"
-                    />
+                    {
+                        test.status.includes("Started") || (test.status.includes("Closed")) ?
+                        <h3>{`שם מבחן: ${test.name || "המבחן הופץ ללא שם"}`}</h3>
+                        :
+                        <InputForm
+                            type="text"
+                            propartype="name"
+                            text="שם מבחן"
+                        />
+                    }
 
-                    <InputForm
+                    {
+                       (test.status.includes("Closed")) ?
+                       <h3>{`כותרת מבחן: ${test.title || "המבחן הופץ ללא כותרת"}`}</h3>
+                       :
+                        <InputForm
                         type="text"
                         propartype="title"
                         text="כותרת מבחן"
-                    />
+                        />
+                    }
 
-                    <InputForm
-                        type="text"
-                        propartype="description"
-                        text="תיאור המבחן (הסבר קצר)"
-                    />
+                    {
+                       (test.status.includes("Closed")) ?
+                       <h3>{`תיאור: ${test.description || "המבחן הופץ ללא תיאור"}`}</h3>
+                       :
+                       <InputForm
+                       type="text"
+                       propartype="description"
+                       text="תיאור המבחן (הסבר קצר)"
+                        />
+                    }
+
+                   
 
                     {
                         test.questions.map((question, index) => {
@@ -113,6 +137,7 @@ export default function TestForm() {
                     <div className={Style.ldsRing}><div></div><div></div><div></div><div></div></div> 
                     }  
                     {
+                        !test.status.includes("Started") && !(test.status.includes("Closed")) &&
                         <Icon 
                         backgroundColor="#037E8B"
                         color="#F3F2DC"
@@ -122,7 +147,7 @@ export default function TestForm() {
                         margin="10px auto"
                         style={{borderRadius: "10px", width: "150px", padding: "5px 0 5px 0",
                         display: "flex", justifyContent: "space-around", cursor: "pointer"
-                    }}
+                        }}
                         onClick={addQuestion}
                         />
                     }   

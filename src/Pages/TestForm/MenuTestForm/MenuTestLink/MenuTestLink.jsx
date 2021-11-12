@@ -6,6 +6,7 @@ import Style from './MenuTestLink.module.css'
 export default function MenuTestLink() {
     const [test, setTest] = useContext(TestFormContext)
     const [link, setLink] = useState(test.toShared)
+    console.log(link);
 
 
     async function submit() {
@@ -27,7 +28,7 @@ export default function MenuTestLink() {
             <i className="fas fa-share-alt"></i>
             <div className={Style.showState} onClick={submit}>
                 <div className={!link ? `${Style.block} ${Style.left}` : `${Style.block} ${Style.right}`}></div>
-                <span className={!link ? `${Style.show} ${Style.rightText}` : `${Style.show} ${Style.leftText}`}>{!link? 'שיתוף בלניק': 'בהזמנה בלבד'}</span>
+                <span className={!link ? `${Style.show} ${Style.rightText}` : `${Style.show} ${Style.leftText}`}>{link? 'שיתוף בלניק': 'בהזמנה בלבד'}</span>
             </div>
         </div>
     )
