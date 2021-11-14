@@ -1,0 +1,76 @@
+.container {
+    background-color: #262B2E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+}
+
+.img {
+    background-image: url("https://cdn.pixabay.com/photo/2018/01/17/07/06/laptop-3087585_1280.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vw;
+}
+
+.directionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.direction {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.directionContainer h1 {
+    color: #C9842A;
+    margin: 10px;
+    margin-bottom: 0px;
+}
+.directionContainer h2 {
+    color: #F3F2DC;
+    margin: 0;
+}
+
+.button {
+    margin: 20px auto;
+    font-family: 'Heebo', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #262B2E;
+    background-color: #C9842A;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 768px){
+    .container {
+
+        margin-top: 30px;
+        width: 70vw;
+        flex-direction: row;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    .img {
+        width: 35vw;
+        height:35vw;
+    }
+
+    .directionContainer {
+        width: 35vw;
+        height: 35vw;
+    }
+    
+}

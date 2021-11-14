@@ -13,6 +13,8 @@ import Test from '../Pages/Test/Test'
 import TestForm from '../Pages/TestForm/TestForm'
 import TestPreview from '../Pages/Test/TestPreview/TestPreview'
 import './app.css'
+import NotFound from '../Pages/NotFound/NotFound'
+import ProfileSitting from '../Pages/ProfileSitting/ProfileSitting'
 
 export const LoginState = createContext()
 export const WidthScreen = createContext()
@@ -79,6 +81,8 @@ function App() {
             <Route path="/website-information" component={About} />
             <Route path="/test-preview/:testId" component={TestPreview} />
             <Route path="/register" component={Homepage} />
+            <Route path="/profile-sitting" component={ProfileSitting} />
+            <Route component={NotFound} />
           </Switch>
           <Footer />
       </Entrance>

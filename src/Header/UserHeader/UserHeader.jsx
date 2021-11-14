@@ -49,6 +49,8 @@ export default function UserHeader() {
         }
     }
 
+    console.log(user);
+
 
     return (
         <>
@@ -69,7 +71,7 @@ export default function UserHeader() {
                                     </div>
                                     <DropdownItem icon="fas fa-pencil-alt" toPage="/my-tests">פתירת מבחן</DropdownItem>
                                     <DropdownItem icon="fas fa-file-alt" toPage="/my-created">מבחנים שיצרתי</DropdownItem>
-                                    <DropdownItem icon="fas fa-cog" toPage="/my-created">הגדרות חשבון</DropdownItem>
+                                    <DropdownItem icon="fas fa-cog" toPage="/profile-sitting">הגדרות חשבון</DropdownItem>
                                     <div  onClick={() => logout()}>
                                         <DropdownItem icon="fas fa-sign-out-alt" >יציאה מהמערכת</DropdownItem>
                                     </div>
@@ -91,8 +93,11 @@ export default function UserHeader() {
                     </Link>
 
                     <Link to="/profile-sitting" className={Style.userImgContainer}>
-                        <div className={Style.userImg}>
-                            <i className="fas fa-user"></i>
+                        <div className={Style.userImg} style={user[0].profilePicture ? {backgroundImage: `url(${user[0].profilePicture})`} : null}>
+                            {
+                               !user[0].profilePicture &&  
+                               <i className="fas fa-user"></i>
+                            }
                         </div>
                         <span className={Style.userName}>{`${user[0].name.first} ${user[0].name.last}`}</span>
                     </Link>
