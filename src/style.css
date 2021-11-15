@@ -19,6 +19,7 @@ body {
     --nav-size: 60px;
     --border-radius:8px;
     --speed: 500ms;
+    -webkit-tap-highlight-color: hsl(0deg 0% 0% / 0%);
 }
 
 ul {

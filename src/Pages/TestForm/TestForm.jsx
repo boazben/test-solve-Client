@@ -88,6 +88,7 @@ export default function TestForm() {
                     }
                     <h1 className={`${Style.title} ${Style.mobile}`}>טופס ליצירת מבחן</h1>
 
+                   
                     <div className={Style.iconsGroupWarp}>
                         <ul className={`${Style.iconsGroup}`}>
                             <li className={Style.icon} style={publishPopup ? {zIndex: '5'} : {zIndex: '0'}}><i className="fa fa-share-alt" onClick={(e) => setState(e, publishPopup, setPublishPopup)}>{publishPopup && <Publish state={[publishPopup, setPublishPopup]}/>}</i></li>
@@ -111,21 +112,24 @@ export default function TestForm() {
                         </div>
                     }
 
+                    <div className={Style.headerForms}>
+
+
                     {
                         test.status.includes("Started") || (test.status.includes("Closed")) ?
                         <h3>{`שם מבחן: ${test.name || "המבחן הופץ ללא שם"}`}</h3>
                         :
                         <InputForm
-                            type="text"
-                            propartype="name"
-                            text="שם מבחן"
+                        type="text"
+                        propartype="name"
+                        text="שם מבחן"
                         />
                     }
 
                     {
-                       (test.status.includes("Closed")) ?
-                       <h3>{`כותרת מבחן: ${test.title || "המבחן הופץ ללא כותרת"}`}</h3>
-                       :
+                        (test.status.includes("Closed")) ?
+                        <h3>{`כותרת מבחן: ${test.title || "המבחן הופץ ללא כותרת"}`}</h3>
+                        :
                         <InputForm
                         type="text"
                         propartype="title"
@@ -134,28 +138,33 @@ export default function TestForm() {
                     }
 
                     {
-                       (test.status.includes("Closed")) ?
-                       <h3>{`תיאור: ${test.description || "המבחן הופץ ללא תיאור"}`}</h3>
-                       :
-                       <InputForm
-                       type="text"
-                       propartype="description"
-                       text="תיאור המבחן (הסבר קצר)"
+                        (test.status.includes("Closed")) ?
+                        <h3>{`תיאור: ${test.description || "המבחן הופץ ללא תיאור"}`}</h3>
+                        :
+                        <InputForm
+                        type="text"
+                        propartype="description"
+                        text="תיאור המבחן (הסבר קצר)"
                         />
                     }
+                    </div>
 
                    
-
-                    {
-                        test.questions.map((question, index) => {
-                            return <QuestionForm question={question} index={index} key={question._id} />
-                        })
-                    }
+                    <div className={Style.questionsContainer}>
+                        {
+                            test.questions.map((question, index) => {
+                                return <QuestionForm question={question} index={index} key={question._id} />
+                            })
+                        }
+                    </div>
 
                     {
                     lodingAdd && 
                     <div className={Style.ldsRing}><div></div><div></div><div></div><div></div></div> 
                     }  
+                    
+                    <div className={Style.addQuestion}>
+
                     {
                         !test.status.includes("Started") && !(test.status.includes("Closed")) &&
                         <Icon 
@@ -167,10 +176,11 @@ export default function TestForm() {
                         margin="10px auto"
                         style={{borderRadius: "10px", width: "150px", padding: "5px 0 5px 0",
                         display: "flex", justifyContent: "space-around", cursor: "pointer"
-                        }}
-                        onClick={addQuestion}
-                        />
-                    }   
+                    }}
+                    onClick={addQuestion}
+                    />
+                }   
+                </div>
 
 
                 </main>

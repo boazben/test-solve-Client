@@ -1,6 +1,4 @@
-mainContainer {
-    width: 80vw
-}
+
 
 .title {
     margin: 0;
@@ -97,14 +95,39 @@ mainContainer {
   }
 
   @media only screen and (min-width: 768px){
-    .title {
-        display: none;
+    .mainContainer {
+      display: flex;
+      flex-direction: column;
+      
     }
 
+    .title {
+        display: none;
+      }
+      
     .iconsGroupWarp{
         position: absolute;
         width: min-content;
         left: 20px;
         top: 150px
     }
+
+    .headerForms {
+      order: 1;
+    }
+
+    .save {
+      font-size: 16px;
+      order: 2;
+      margin-bottom: -20px;
+    }
+
+    .questionsContainer {
+      order: 3;
+    }
+
+    .addQuestion {
+      order: 4;
+    }
+
   }
