@@ -1,11 +1,12 @@
 import React, { useContext, useRef, useState } from 'react'
 import { serverReq } from '../../../../functions'
-import { TestFormContext } from '../../TestForm'
+import { LodingContext, TestFormContext } from '../../TestForm'
 import Style from './MenuTestDeadlineForm.module.css'
 
 export default function MenuTestDeadlineForm() {
     const [test, setTest] = useContext(TestFormContext)
     const [textState, setTextState] = useState('text')
+    const [generalLoding, setGeneralLoding] = useContext(LodingContext)
     const form = useRef(null)
 
     async function submit(e) {
@@ -18,10 +19,13 @@ export default function MenuTestDeadlineForm() {
         )
         console.log(e.target.input.value);
         try {
+            setGeneralLoding(true)
             await serverReq('put', '/edit_test', {"idTest": test._id, "newData": {"deadline": values.input}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             setTest(res)
+            setGeneralLoding(false)
         } catch (error) {
+            setGeneralLoding(false)
             throw error
             // console.log(`In InputForm page, error: ${error.response?.data?.error || error.message || error}`)
             

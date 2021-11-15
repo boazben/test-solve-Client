@@ -19,7 +19,8 @@ export default function LinkForPublish() {
         <div className={Style.container}>
             <div className={Style.link} ref={link}>
                 
-                    {`http://localhost:3000/test/${test._id}`}               
+                    {/* {`http://localhost:3000/test/${test._id}`}                */}
+                    {`https://testudy.herokuapp.com/${test._id}`}               
                 
             </div>
             <div onClick={copy}>

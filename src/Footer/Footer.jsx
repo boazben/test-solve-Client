@@ -23,7 +23,7 @@ export default function Footer() {
                 {/* Navigator */}
                 <div className={Style.nav}>
                     <h3 className={Style.title}>ניווט מהיר</h3>
-                    <Link to="//my-created" className={Style.Link}>יצירת מבחנים</Link>
+                    <Link to="/my-created" className={Style.Link}>יצירת מבחנים</Link>
                     <Link to="/my-tests" className={Style.Link}>המבחנים שלי</Link>
                     <Link to="/website-information" className={Style.Link}>על הפרויקט</Link>
                     <Link to="/about" className={Style.Link}>מי אנחנו?</Link>

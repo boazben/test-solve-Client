@@ -47,8 +47,8 @@ export default function TestData({state}) {
                 total: total,
                 didTest: didTest,
                 totalDidTest: totalDidTest,
-                averageGrade: averageGrade,
-                percentDid: percentDid
+                averageGrade: (Math.round(averageGrade * 100) / 100).toFixed(2),
+                percentDid: (Math.round(percentDid * 100) / 100).toFixed(2)
             })
     }
 

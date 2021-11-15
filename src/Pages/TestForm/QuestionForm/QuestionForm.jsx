@@ -4,7 +4,7 @@ import Style from'./QuestionForm.module.css'
 import TitelQuestionForm from './TitelQuestionForm/TitelQuestionForm'
 import Loding from '../../../Components/Loding/Loding'
 import DescriptionQuestionForm from './DescriptionQuestionForm/DescriptionQuestionForm'
-import { TestFormContext } from '../TestForm'
+import { LodingContext, TestFormContext } from '../TestForm'
 import AnswersForm from './AnswersForm/AnswersForm'
 import AddBut from '../../../Components/AddBut/AddBut'
 import DeleteButton from '../../../Components/DeleteButton/Button'
@@ -22,14 +22,17 @@ export default function QuestionForm({question, index}) {
     const [popup, setPopup] = useState(false)
     const [lodingAns, setLodingAns] = useState(false)
     const [lodingQues, setLodingQues] = useState(false)
+    const [generalLoding, setGeneralLoding] = useContext(LodingContext)
 
     async function addAnswer() {
                 setLodingAns(true)
+                setGeneralLoding(true)
             try {
                 await serverReq('put', '/edit_question', {"idQuestion": question._id, "newData": {"answer": {"text": "", "correct": false}}})
                 const res = await serverReq('post', '/test-form', { "idTest": test._id })
                 setTest(res)
                 setLodingAns(false)
+                setGeneralLoding(false)
             } catch (error) {
                 console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
             }
@@ -37,11 +40,13 @@ export default function QuestionForm({question, index}) {
 
     async function deleteQuestion() {
         setLodingQues(true)
+        setGeneralLoding(true)
         try {
             await serverReq('put', '/edit_question', {"idQuestion": question._id, "newData": {"active": false}})
             const thisTest = await serverReq('post', '/test-form', {"idTest": test._id})
             setTest(thisTest)
             setLodingQues(false)
+            setGeneralLoding(false)
             } catch (error) {
                 console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
             }

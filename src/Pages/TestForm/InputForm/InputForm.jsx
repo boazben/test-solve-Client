@@ -1,11 +1,12 @@
 import React, { useContext, useRef } from 'react'
 import { serverReq } from '../../../functions';
-import { TestFormContext } from '../TestForm';
+import { LodingContext, TestFormContext } from '../TestForm';
 import Style from './InputForm.module.css'
 
 export default function InputForm({text, type, icon, propartype, edit, index}) {
     const form = useRef(null)
     const [test, setTest] = useContext(TestFormContext)
+    const [generalLoding, setGeneralLoding] = useContext(LodingContext)
 
     async function submit(e) {
         e.preventDefault();
@@ -16,9 +17,11 @@ export default function InputForm({text, type, icon, propartype, edit, index}) {
         }), {}
         )
         try {
+            setGeneralLoding(true)
             await serverReq('put', '/edit_test', {"idTest": test._id, "newData": {[propartype]: values.input}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             setTest(res)
+            setGeneralLoding(false)
         } catch (error) {
             throw error
             // console.log(`In InputForm page, error: ${error.response?.data?.error || error.message || error}`)

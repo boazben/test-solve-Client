@@ -1,17 +1,19 @@
 import React, { useRef } from 'react'
-import { useContext, useState } from 'react/cjs/react.development';
+import { useContext, useState } from 'react';
 import Popup from '../../../../Components/Popup/Popup';
 import { serverReq } from '../../../../functions';
-import { TestFormContext } from '../../TestForm';
+import { LodingContext, TestFormContext } from '../../TestForm';
 import Style from './MenuTestTimerForm.module.css';
 import TimeForm from './TimeForm/TimeForm';
 
 export default function MenuTestTimerForm() {
     const [test, setTest] = useContext(TestFormContext)
+    const [generalLoding, setGeneralLoding] = useContext(LodingContext)
     const [seconds_state, setSeconds_state] = useState('text')
     const [minutes_state, setMinutes_state] = useState('text')
     const [hours_state, setHours_state] = useState('text')
     const [popup, setPopup] = useState(false)
+
 
     const seconds = useRef()
     const minutes = useRef()
@@ -82,11 +84,13 @@ export default function MenuTestTimerForm() {
             if (!currentTime) currentTime = 0
             let currentSeconds = (currentTime / 1000 ) % 60
             const updateTime = currentTime - (currentSeconds * 1000) + (seconds * 1000)
+            setGeneralLoding(true)
             const updateTest = await serverReq('put', '/edit_test', {"idTest": test._id, "newData": {"timeForTest": updateTime}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             console.log('res:', res);
             setTest(res)
             change('seconds') 
+            setGeneralLoding(false)
         } catch (error) {
             console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
         }
@@ -108,11 +112,13 @@ export default function MenuTestTimerForm() {
             const updateTime = (currentTime - (currentMinutes * 60 * 1000) + (minutes * 60 * 1000))
             console.log('updateTime:', updateTime);
             console.log();
+            setGeneralLoding(true)
             const updateTest = await serverReq('put', '/edit_test', {"idTest": test._id, "newData": {"timeForTest": updateTime}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             console.log('minutesRes:', res);
             setTest(res)
             change('minutes') 
+            setGeneralLoding(false)
         } catch (error) {
             console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
         }
@@ -132,11 +138,13 @@ export default function MenuTestTimerForm() {
             const updateTime = (currentTime - (currentHours * 3600 * 1000) + (hours * 3600 * 1000))
             console.log('updateTime:', updateTime);
             console.log();
+            setGeneralLoding(true)
             const updateTest = await serverReq('put', '/edit_test', {"idTest": test._id, "newData": {"timeForTest": updateTime}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             console.log('minutesRes:', res);
             setTest(res)
             change('hours') 
+            setGeneralLoding(false)
         } catch (error) {
             console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
         }

@@ -14,9 +14,11 @@ import InputForm from './InputForm/InputForm'
 import Icon from '../../Components/Icon/Icon'
 import TestSetting from './TestSetting/TestSetting'
 import TestData from './TestData/TestData'
+import SmallLoding from '../../Components/Loding/SmallLoding'
 
 export const TestFormContext = createContext()
 export const PublishPopupContext = createContext()
+export const LodingContext = createContext()
 
 export default function TestForm() {
 
@@ -26,6 +28,7 @@ export default function TestForm() {
     const [dropdown, setDropdown] = useState(false)
     const [publishPopup, setPublishPopup] = useState(false)
     const [testData, setTestData] = useState(false)
+    const [generalLoding, setGeneralLoding] = useState('notShow')
     
     useEffect(() => {
         getTest()
@@ -44,6 +47,7 @@ export default function TestForm() {
 
     async function addQuestion() {
         setLodingAdd(true)
+        setGeneralLoding(true)
         try {
             await serverReq('put', '/create_question', {"idTest": test._id})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
@@ -52,6 +56,7 @@ export default function TestForm() {
                 // })
                 setTest(res)
                 setLodingAdd(false)
+                setGeneralLoding(false)
             } catch (error) {
                 console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
             }
@@ -72,6 +77,7 @@ export default function TestForm() {
             {
                 !test ? <Loding text="טוען מבחן..." /> :
                 <TestFormContext.Provider value={[test, setTest]}>
+                <LodingContext.Provider value={[generalLoding, setGeneralLoding]}>
                 <main className={Style.mainContainer}>
                     {
                         (test.status.includes("Started") || (test.status.includes("Closed"))) && 
@@ -90,6 +96,20 @@ export default function TestForm() {
                             <li className={`${Style.icon}`} style={dropdown ? {zIndex: '4'} : {zIndex: '0'}}><i className={`fas fa-cog ${Style.dropdown}`}  onClick={(e) =>  setState(e, dropdown, setDropdown)}>{dropdown && <TestSetting />}</i></li>
                         </ul>
                     </div>
+
+                    {
+                        generalLoding == "notShow" ? null:
+                        generalLoding ?
+                        <div className={Style.save}>
+                            <span className={Style.saveText}> שומר שינויים...</span>
+                            <SmallLoding state={[generalLoding, setGeneralLoding]}/>
+                        </div>
+                        :
+                        <div className={Style.save}>
+                            <i className="far fa-check-circle"></i>
+                            <span className={Style.saveText}>שינויים נשמרו!</span>
+                        </div>
+                    }
 
                     {
                         test.status.includes("Started") || (test.status.includes("Closed")) ?
@@ -154,6 +174,7 @@ export default function TestForm() {
 
 
                 </main>
+                </LodingContext.Provider>
                 </TestFormContext.Provider>
             }
 

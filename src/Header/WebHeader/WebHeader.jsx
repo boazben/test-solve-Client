@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { useContext } from 'react/cjs/react.development'
+import { useContext } from 'react'
 import { LoginState } from '../../App/App'
 import UserHeader from '../UserHeader/UserHeader'
 import Style from './WebHeader.module.css'
 
-export default function WebHeader({logout}) {
-    const [login] = useContext(LoginState)
+export default function WebHeader() {
+    const [login, setLogin] = useContext(LoginState)
     return (
         <header className={Style.header}>
 
@@ -30,9 +30,7 @@ export default function WebHeader({logout}) {
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/website-information' >על הפרויקט</NavLink>
                 <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/about' >מי אנחנו?</NavLink>
                 {
-                    login ?
-                    null
-                    :
+                    !login &&
                     <NavLink activeClassName={Style.Linkactive} className={Style.Link} to='/register' >כניסה</NavLink>
                 }
             </nav>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import Checkbox from '../../../../Components/Checkbox/Checkbox'
 import Icon from '../../../../Components/Icon/Icon'
 import { serverReq } from '../../../../functions'
-import { TestFormContext } from '../../TestForm'
+import { LodingContext, TestFormContext } from '../../TestForm'
 import InputQuesForm from '../InputQuesForm/InputQuesForm'
 import { QuestionContext } from '../QuestionForm'
 import Style from'./AnswersForm.module.css'
@@ -12,6 +12,7 @@ import OneAnsForm from './OneAnsForm/OneAnsForm'
 export default function AnswersForm({answer, index, idQuestion}) {
     const [deleteAns, setDeleteAns] = useState(false)
     const [test, setTest] = useContext(TestFormContext)
+    const [generalLoding, setGeneralLoding] = useContext(LodingContext)
     const [loding, setLoding] = useState(false)
     const form = useRef(null)
 
@@ -33,11 +34,13 @@ export default function AnswersForm({answer, index, idQuestion}) {
     async function deleteAnswer() {
         setLoding(true)
         try {
+            setGeneralLoding(true)
             await serverReq('put', '/edit_question', {"idQuestion": idQuestion, "newData": {"answer": {"_id": answer._id, "active": "false"}}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             console.log(res);
             setTest(res)
             setLoding(false)
+            setGeneralLoding(false)
         } catch (error) {
             console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
         }
@@ -45,11 +48,13 @@ export default function AnswersForm({answer, index, idQuestion}) {
 
     async function addAnswer() {
         setLoding(true)
+        setGeneralLoding(true)
         try {
             await serverReq('put', '/edit_question', {"idQuestion": idQuestion, "newData": {"answer": {"text": "", "correct": false}}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             setTest(res)
             setLoding(false)
+            setGeneralLoding(false)
         } catch (error) {
             console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
         }
@@ -65,11 +70,13 @@ export default function AnswersForm({answer, index, idQuestion}) {
         )
         console.log(values[answer._id + "check"]);
         setLoding(true)
+        setGeneralLoding(true)
         try {
             await serverReq('put', '/edit_question', {"idQuestion": idQuestion, "newData": {"answer": {"_id": answer._id, "correct": values[answer._id + "check"]}}})
             const res = await serverReq('post', '/test-form', { "idTest": test._id })
             setTest(res)
             setLoding(false)
+            setGeneralLoding(false)
         } catch (error) {
             console.log(`In TensName page, error: ${error.response?.data?.error || error.message || error}`)
         }
