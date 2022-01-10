@@ -1,0 +1,41 @@
+.container {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #F3F2DC;
+}
+
+.text {
+    margin: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.container:hover > div.iconsContainer{
+    background-color: #F3F2DC;
+    color: #025D66;
+}
+
+.iconsContainer {
+    border: 2px solid #F3F2DC;
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.iconsContainer:hover {
+    background-color: #F3F2DC;
+    color: #025D66;
+}
+
+
+
+

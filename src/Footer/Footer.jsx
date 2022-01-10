@@ -32,7 +32,7 @@ export default function Footer() {
 
                 {/* Social Networks */}
                 <div className={`${Style.nav} ${Style.socialNetworks}`}>
-                <h3 className={Style.title}>מצא אותנו</h3>
+                <h3 className={Style.title}>מצאו אותנו</h3>
                 
                 <div className={Style.iconsGroup}>
                     <div className={`${Style.top}`}>
@@ -62,7 +62,7 @@ export default function Footer() {
             
 
             <div className={Style.creator}>
-             by <a className={`${Style.Link} ${Style.creatorName}`} href="https://www.linkedin.com/in/boaz-ben-david-234221217/"  target="_blank"> Boaz Ben-David. Full Stack Developer</a> <i className="far fa-copyright"> 2021</i> 
+             by <a className={`${Style.Link} ${Style.creatorName}`} href="https://www.linkedin.com/in/boaz-ben-david-234221217/"  target="_blank"> Boaz Ben-David. Full Stack Developer</a> <i className="far fa-copyright"> {new Date().getFullYear()} </i> 
             </div>
 
         </footer>
